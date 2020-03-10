@@ -4,9 +4,29 @@ using UnityEngine;
 
 public class pickup : MonoBehaviour
 {
+    public int value;
+    public float rotateSpeed;
     public GameObject pick;
-    private void OnTriggerEnter2D(Collider2D other)
+    public AudioSource tickSource;
+
+
+    void Update()
     {
-        this.gameObject.SetActive(false);
+        gameObject.transform.Rotate(Vector3.up * Time.deltaTime * rotateSpeed);
+    }
+
+    void Start()
+    {
+        tickSource = GetComponent<AudioSource>();
+    }
+
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        GameManager.instance.Collect(value, gameObject);
+        this.GetComponent<Renderer>().enabled = false;
+        //this.GetComponent<Collider>().enabled = false;
+        tickSource.Play();
+        Destroy(this.gameObject, 1.6f);
+        //this.gameObject.SetActive(false);
     }
 }
