@@ -20,11 +20,12 @@ public class Hero_Controls : MonoBehaviour
     private readonly int left_direction = -1;
     private readonly int right_direction = 1;
     public bool is_sprinting;
+    public Animator anim;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        anim = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -38,14 +39,28 @@ public class Hero_Controls : MonoBehaviour
             controller.Jump(is_sprinting);           
         }
 
+
+
         if (Input.GetKey(KeyCode.LeftShift))
         {
+            anim.SetBool("is_walk", false);
+            anim.SetBool("is_sprint", true);
             is_sprinting = true;
         }
+
+
+        if (Input.GetKeyUp(KeyCode.LeftShift))
+        {
+            anim.SetBool("is_sprint", false);
+            is_sprinting = false;
+        }
+
 
         //Moving Right STATE
         if (current_state == State.right)
         {
+            anim.SetBool("is_idle", false);
+            anim.SetBool("is_walk", true);
             //adjust moving speed
             if (moving_speed <= max_speed)
             {
@@ -58,7 +73,8 @@ public class Hero_Controls : MonoBehaviour
         //Moving Left STATE
         if (current_state == State.left)
         {
-
+            anim.SetBool("is_idle", false);
+            anim.SetBool("is_walk", true);
             //adjust moving speed
             if (moving_speed <= max_speed)
             {
@@ -70,10 +86,14 @@ public class Hero_Controls : MonoBehaviour
 
         if (current_state == State.idle)
         {
+            anim.SetBool("is_walk", false);
+            anim.SetBool("is_sprint", false);
+            anim.SetBool("is_idle", true);
             moving_speed = 0;
             return;
         }
 
+        
 
     }
 
@@ -128,6 +148,31 @@ public class Hero_Controls : MonoBehaviour
                 current_state = State.left;
                 break;
             case 3:
+                current_state = State.right;
+                break;
+            case 4:
+                current_state = State.left;
+                break;
+            case 5:
+                current_state = State.idle;
+                break;
+        }
+    }
+
+
+    public void animHandler(int x)
+    {
+        switch (x)
+        {
+            case 1: //idle
+                moving_speed = 0;
+                current_state = State.right;
+                break;
+            case 2: //walk
+                moving_speed = 0;
+                current_state = State.left;
+                break;
+            case 3: //sprint
                 current_state = State.right;
                 break;
             case 4:

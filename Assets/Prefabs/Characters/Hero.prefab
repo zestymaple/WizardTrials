@@ -13,8 +13,8 @@ GameObject:
   - component: {fileID: 6230658390115470107}
   - component: {fileID: 6230658390115470108}
   - component: {fileID: 6230658390115470109}
-  - component: {fileID: 6230658390115470110}
   - component: {fileID: 6230658390115470104}
+  - component: {fileID: 6230658390115470110}
   - component: {fileID: 6230658390115470103}
   m_Layer: 0
   m_Name: Hero
@@ -154,19 +154,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &6230658390115470110
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6230658390115470111}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 70bb71e68fdd0b84d98ae4cc35c6d305, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  controller: {fileID: 6230658390115470103}
 --- !u!58 &6230658390115470104
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -183,6 +170,26 @@ CircleCollider2D:
   m_Offset: {x: 0, y: -0.22}
   serializedVersion: 2
   m_Radius: 0.09
+--- !u!114 &6230658390115470110
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6230658390115470111}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 70bb71e68fdd0b84d98ae4cc35c6d305, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  controller: {fileID: 6230658390115470103}
+  moving_speed: 0
+  max_speed: 5
+  moving_right: 0
+  moving_left: 0
+  grounded: 0
+  current_state: 2
+  is_sprinting: 0
 --- !u!114 &6230658390115470103
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -195,6 +202,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f054cff91706a445a6ae27333323af0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_MaxSpeed: 10
+  grounded: 0
+  ground_collider: {fileID: 0}
+  groundcheck: {fileID: 0}
+  groundlayer:
+    serializedVersion: 2
+    m_Bits: 0
+  jump_speed: 2
+  jumpcoe: 0.75
+  sprint_speed: 2
 --- !u!1 &6230658390352477262
 GameObject:
   m_ObjectHideFlags: 0
