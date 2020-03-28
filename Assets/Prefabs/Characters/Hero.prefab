@@ -190,6 +190,7 @@ MonoBehaviour:
   grounded: 0
   current_state: 2
   is_sprinting: 0
+  anim: {fileID: 0}
 --- !u!114 &6230658390115470103
 MonoBehaviour:
   m_ObjectHideFlags: 0

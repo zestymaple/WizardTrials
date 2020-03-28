@@ -72,6 +72,7 @@ public class Hero_Controller : MonoBehaviour
                 float calc_jump_speed_y = jump_speed + x3;
                 float calc_jump_speed_x = x + x4;
 
+
                 player_Rigidbody2D.velocity = new Vector2(calc_jump_speed_x, calc_jump_speed_y);
                 return;
             }
