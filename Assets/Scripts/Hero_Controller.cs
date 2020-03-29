@@ -13,10 +13,14 @@ public class Hero_Controller : MonoBehaviour
     public float jump_speed = 2;
     public float jumpcoe = 0.75f;
     public float sprint_speed = 2;
+    public GameObject attack_hitbox;
+    public GameObject attack_hitbox_special;
+    public Animator anim;
 
     // Start is called before the first frame update
     void Start()
     {
+        anim = GetComponent<Animator>();
         player_Rigidbody2D = GetComponent<Rigidbody2D>();
         ground_collider = GetComponent<CircleCollider2D>();
     }
@@ -24,12 +28,74 @@ public class Hero_Controller : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (grounded == true)
+        {
+            anim.ResetTrigger("attack_air");
+        }
 
+        if (grounded == false)
+        {
+            anim.ResetTrigger("attack_special");
+            anim.ResetTrigger("attack");
+        }
     }
 
     void FixedUpdate()
     {
         grounded = Physics2D.OverlapCircle(groundcheck.position, 0.15f, groundlayer);
+    }
+
+
+    public void attack(bool is_sprinting)
+    {
+
+        if (grounded == true && is_sprinting == false)
+        {
+            Debug.Log("you attacked");
+            StartCoroutine(AttackDuration_ground());
+        }
+
+        if (grounded == false && is_sprinting == false)
+        {
+            StartCoroutine(AttackDuration_air());
+        }
+
+
+        if (is_sprinting == true && grounded == true)
+        {
+            StartCoroutine(AttackDuration_special());
+        }
+
+    }
+
+    IEnumerator AttackDuration_ground()
+    {
+        anim.SetTrigger("attack");
+        Debug.Log("attack start");
+        attack_hitbox.SetActive(true);
+        yield return new WaitForSeconds(0.5f);
+        Debug.Log("attack ended");
+        attack_hitbox.SetActive(false);
+    }
+
+    IEnumerator AttackDuration_air()
+    {
+        anim.SetTrigger("attack_air");
+        Debug.Log("attack start");
+        attack_hitbox.SetActive(true);
+        yield return new WaitForSeconds(0.5f);
+        Debug.Log("attack ended");
+        attack_hitbox.SetActive(false);
+    }
+
+    IEnumerator AttackDuration_special()
+    {
+        anim.SetTrigger("attack_special");
+        Debug.Log("attack start");
+        attack_hitbox_special.SetActive(true);
+        yield return new WaitForSeconds(1);
+        Debug.Log("attack ended");
+        attack_hitbox_special.SetActive(false);
     }
 
     public void Move(float dir, float speed, bool is_sprinting)
@@ -85,7 +151,7 @@ public class Hero_Controller : MonoBehaviour
                 float x2 = Mathf.Abs(x);
 
                 float x3 = x2 * (jumpcoe) * 0.5f;
-                float x4 = x * (jumpcoe) * 0.5f;
+                float x4 = x * (jumpcoe) * 5.5f;
 
                 float calc_jump_speed_y = jump_speed + x3;
                 float calc_jump_speed_x = x + x4;

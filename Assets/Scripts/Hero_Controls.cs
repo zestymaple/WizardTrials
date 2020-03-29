@@ -7,6 +7,7 @@ public class Hero_Controls : MonoBehaviour
     public Hero_Controller controller;
     public float moving_speed = 0;
     public float max_speed = 5;
+    public float max_speed_sprint = 10;
     public bool moving_right;
     public bool moving_left;
     public bool grounded;
@@ -30,17 +31,17 @@ public class Hero_Controls : MonoBehaviour
         player_Rigidbody2D = GetComponent<Rigidbody2D>();
     }
 
+
+    void FixedUpdate()
+    {
+
+    }
+
     // Update is called once per frame
     void Update()
     {
         readInput();
         is_sprinting = false;
-        //Call Jump
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            anim.SetTrigger("jump_pressed");
-            controller.Jump(is_sprinting);           
-        }
 
 
 
@@ -58,6 +59,23 @@ public class Hero_Controls : MonoBehaviour
             is_sprinting = false;
         }
 
+        //Call Jump
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            anim.SetTrigger("jump_pressed");
+            controller.Jump(is_sprinting);
+        }
+
+        //call attack
+        if (Input.GetKeyDown(KeyCode.Mouse0))
+        {
+
+            //anim.Play("normal_attack");
+
+            controller.attack(is_sprinting);
+
+
+        }
 
         //Moving Right STATE
         if (current_state == State.right)
@@ -90,10 +108,18 @@ public class Hero_Controls : MonoBehaviour
 
 
             //adjust moving speed
-            if (moving_speed <= max_speed)
+            if (moving_speed <= max_speed && is_sprinting == false)
             {
                 moving_speed++;
-            }           
+            }
+
+            //adjust moving speed
+            if (moving_speed <= max_speed_sprint && is_sprinting == true)
+            {
+                moving_speed++;
+            }
+
+
             //call move method
             controller.Move(right_direction ,moving_speed, is_sprinting);
         }
@@ -130,10 +156,17 @@ public class Hero_Controls : MonoBehaviour
 
 
             //adjust moving speed
-            if (moving_speed <= max_speed)
+            if (moving_speed <= max_speed && is_sprinting == false)
             {
                 moving_speed++;
             }
+
+            //adjust moving speed
+            if (moving_speed <= max_speed_sprint && is_sprinting == true)
+            {
+                moving_speed++;
+            }
+
             //call move method
             controller.Move(left_direction, moving_speed, is_sprinting);
         }

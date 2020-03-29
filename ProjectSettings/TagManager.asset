@@ -3,7 +3,10 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - enemy
+  - Player_Hitbox_regular
+  - Player_Hitbox_special
   layers:
   - Default
   - TransparentFX
