@@ -16,13 +16,20 @@ public class Hero_Controller : MonoBehaviour
     public GameObject attack_hitbox;
     public GameObject attack_hitbox_special;
     public Animator anim;
+    public BoxCollider2D player_hitbox;
+    public Transform firepoint;
+    public GameObject hero_projectile;
+    public int hero_mana;
+    public float midair_movement;
 
     // Start is called before the first frame update
     void Start()
     {
+        hero_mana = 100;
         anim = GetComponent<Animator>();
         player_Rigidbody2D = GetComponent<Rigidbody2D>();
         ground_collider = GetComponent<CircleCollider2D>();
+
     }
 
     // Update is called once per frame
@@ -61,7 +68,7 @@ public class Hero_Controller : MonoBehaviour
         }
 
 
-        if (is_sprinting == true && grounded == true)
+        if (is_sprinting == true && hero_mana > 0)
         {
             StartCoroutine(AttackDuration_special());
         }
@@ -93,28 +100,61 @@ public class Hero_Controller : MonoBehaviour
         anim.SetTrigger("attack_special");
         Debug.Log("attack start");
         attack_hitbox_special.SetActive(true);
+        shoot();
         yield return new WaitForSeconds(1);
         Debug.Log("attack ended");
         attack_hitbox_special.SetActive(false);
     }
 
+    public void shoot()
+    {
+        if (hero_mana > 0)
+        {
+            Instantiate(hero_projectile, firepoint.position, firepoint.rotation);
+            hero_mana--;
+        }
+
+        else return;
+    }
+
+
     public void Move(float dir, float speed, bool is_sprinting)
     {
 
-        if (is_sprinting == true)
+        if (grounded == true)
         {
-            float speed_calc = ((dir * speed) / 10) * sprint_speed;
-            player_Rigidbody2D.velocity = new Vector2(speed_calc, player_Rigidbody2D.velocity.y);
-        }
 
-        if (is_sprinting == false)
-        {
-            //move the character in the move direction (-1 or 1)
-            float speed_calc = (dir * speed) / 10;
-            player_Rigidbody2D.velocity = new Vector2(speed_calc, player_Rigidbody2D.velocity.y);
-        }
+            if (is_sprinting == true)
+            {
+                float speed_calc = ((dir * speed)); //* sprint_speed;
+                player_Rigidbody2D.velocity = new Vector2(speed_calc, player_Rigidbody2D.velocity.y);
+            }
 
+            if (is_sprinting == false)
+            {
+                //move the character in the move direction (-1 or 1)
+                float speed_calc = (dir * speed);
+                player_Rigidbody2D.velocity = new Vector2(speed_calc, player_Rigidbody2D.velocity.y);
+            }
+
+        }
         
+        if (grounded ==false)
+        {
+
+            if (is_sprinting == true)
+            {
+                float speed_calc = ((dir * speed)); //* sprint_speed;
+                player_Rigidbody2D.velocity = new Vector2(speed_calc * midair_movement, player_Rigidbody2D.velocity.y);
+            }
+
+            if (is_sprinting == false)
+            {
+                //move the character in the move direction (-1 or 1)
+                float speed_calc = (dir * speed);
+                player_Rigidbody2D.velocity = new Vector2(speed_calc * midair_movement, player_Rigidbody2D.velocity.y);
+            }
+        }
 
     }
 
@@ -150,8 +190,8 @@ public class Hero_Controller : MonoBehaviour
                 float x = player_Rigidbody2D.velocity.x;
                 float x2 = Mathf.Abs(x);
 
-                float x3 = x2 * (jumpcoe) * 0.5f;
-                float x4 = x * (jumpcoe) * 5.5f;
+                float x3 = x2 * (jumpcoe *1.25f);
+                float x4 = x * (jumpcoe *1.25f);
 
                 float calc_jump_speed_y = jump_speed + x3;
                 float calc_jump_speed_x = x + x4;
@@ -162,6 +202,8 @@ public class Hero_Controller : MonoBehaviour
 
 
         }
+
+        else return;
 
     }
 

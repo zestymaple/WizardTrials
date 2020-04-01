@@ -7,6 +7,11 @@ TagManager:
   - enemy
   - Player_Hitbox_regular
   - Player_Hitbox_special
+  - Player_self_hitbox
+  - Melee_Enemy_1
+  - Melee_Enemy_touch
+  - Range_Enemy_1
+  - Range_Enemy_touch
   layers:
   - Default
   - TransparentFX
