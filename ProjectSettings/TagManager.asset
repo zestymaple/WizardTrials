@@ -12,6 +12,8 @@ TagManager:
   - Melee_Enemy_touch
   - Range_Enemy_1
   - Range_Enemy_touch
+  - vines
+  - non-climb
   layers:
   - Default
   - TransparentFX
@@ -25,11 +27,11 @@ TagManager:
   - Ground
   - Enemy
   - Pickup
-  - 
-  - 
-  - 
-  - 
-  - 
+  - background_3
+  - background_2
+  - background_1
+  - Vines
+  - Non-Climb
   - 
   - 
   - 
