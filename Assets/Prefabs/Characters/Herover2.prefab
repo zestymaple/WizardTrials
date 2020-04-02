@@ -325,8 +325,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   controller: {fileID: 3939325475139054769}
   moving_speed: 0
-  max_speed: 2.5
-  max_speed_sprint: 3
+  max_speed: 3
+  max_speed_sprint: 4
   moving_right: 0
   moving_left: 0
   grounded: 0
@@ -334,6 +334,8 @@ MonoBehaviour:
   is_sprinting: 0
   anim: {fileID: 0}
   playerhit: {fileID: 1614083932881858875}
+  playersprite: {fileID: 0}
+  playerdead: 0
 --- !u!114 &3939325475139054769
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -346,7 +348,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f054cff91706a445a6ae27333323af0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_MaxSpeed: 3
   grounded: 0
   ground_collider: {fileID: 0}
   groundcheck: {fileID: 3939325474364759019}

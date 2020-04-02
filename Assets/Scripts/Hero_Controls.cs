@@ -24,12 +24,33 @@ public class Hero_Controls : MonoBehaviour
     public Animator anim;
     private Rigidbody2D player_Rigidbody2D;
     public Player_getshit playerhit;
+    public SpriteRenderer playersprite;
+    public bool playerdead;
 
     // Start is called before the first frame update
     void Start()
     {
+        playersprite = GetComponent<SpriteRenderer>();
         anim = GetComponent<Animator>();
         player_Rigidbody2D = GetComponent<Rigidbody2D>();
+    }
+
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.tag == "boundary")
+        {
+            playerdead = true;
+            playersprite.sortingOrder = 5;
+            anim.SetBool("diebool", true);
+            Debug.Log("player destroyed");
+            StartCoroutine(Die());
+        }
+    }
+
+    IEnumerator Die()
+    {
+        yield return new WaitForSeconds(1.5f);
+        Destroy(gameObject);
     }
 
 
@@ -41,7 +62,12 @@ public class Hero_Controls : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (playerhit.on_cooldown == false)
+        if (playerdead == true)
+        {
+            return;
+        }
+
+        if (playerhit.on_cooldown == false || playerdead == false)
 
         {
 
@@ -115,13 +141,19 @@ public class Hero_Controls : MonoBehaviour
                 //adjust moving speed
                 if (moving_speed <= max_speed && is_sprinting == false)
                 {
-                    moving_speed++;
+                    moving_speed = moving_speed + 0.1f;
                 }
+
+                if (moving_speed >= max_speed && is_sprinting == false)
+                {
+                    moving_speed = max_speed;
+                }
+
 
                 //adjust moving speed
                 if (moving_speed <= max_speed_sprint && is_sprinting == true)
                 {
-                    moving_speed++;
+                    moving_speed = moving_speed + 0.1f;
                 }
 
 
@@ -163,13 +195,18 @@ public class Hero_Controls : MonoBehaviour
                 //adjust moving speed
                 if (moving_speed <= max_speed && is_sprinting == false)
                 {
-                    moving_speed++;
+                    moving_speed = moving_speed + 0.1f;
+                }
+
+                if (moving_speed >= max_speed && is_sprinting == false)
+                {
+                    moving_speed = max_speed;
                 }
 
                 //adjust moving speed
                 if (moving_speed <= max_speed_sprint && is_sprinting == true)
                 {
-                    moving_speed++;
+                    moving_speed = moving_speed + 0.1f;
                 }
 
                 //call move method

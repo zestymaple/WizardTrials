@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class Hero_Controller : MonoBehaviour
 {
-    [SerializeField] private float m_MaxSpeed = 10f;
     public bool grounded;
     private Rigidbody2D player_Rigidbody2D;
     public CircleCollider2D ground_collider;

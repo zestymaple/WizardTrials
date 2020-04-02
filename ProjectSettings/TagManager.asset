@@ -14,6 +14,7 @@ TagManager:
   - Range_Enemy_touch
   - vines
   - non-climb
+  - boundary
   layers:
   - Default
   - TransparentFX
@@ -50,4 +51,7 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: on top
+    uniqueID: 224391805
     locked: 0
