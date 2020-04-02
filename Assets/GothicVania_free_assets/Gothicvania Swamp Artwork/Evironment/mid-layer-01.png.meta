@@ -1,7 +1,10 @@
 fileFormatVersion: 2
 guid: 74aaaef6316a24ac7a16c0004285d27f
 TextureImporter:
-  internalIDToNameTable: []
+  internalIDToNameTable:
+  - first:
+      213: 3781522705512664047
+    second: mid-layer-01_0
   externalObjects: {}
   serializedVersion: 10
   mipmaps:
@@ -96,7 +99,28 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 1
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: mid-layer-01_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 208
+        height: 256
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6fdec981c2cb7f142b9278cdc59ed5c6
+      internalID: 3781522705512664047
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
