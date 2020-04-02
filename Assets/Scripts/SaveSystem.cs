@@ -24,7 +24,7 @@ public class SaveSystem : MonoBehaviour
         Debug.Log("OnSceneLoaded: " + scene.name);
         Debug.Log(mode);
 
-        if (scene.name == "BaseSceneSample")
+        if (scene.name == "Swamp_01")
         {
             LoadSave();
         }
