@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 2267133197678842331}
   m_Layer: 9
   m_Name: Swamp_Ground_final
-  m_TagString: Untagged
+  m_TagString: opaque
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

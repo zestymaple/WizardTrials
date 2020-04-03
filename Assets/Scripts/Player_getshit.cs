@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Player_getshit : MonoBehaviour
 {
+    public Hero_Controls controller;
     public Animator anim;
     public int hits_taken;
     public Rigidbody2D playerbod;
@@ -12,10 +13,12 @@ public class Player_getshit : MonoBehaviour
     public float knockbackpower; //how far you get knocked back
     public Transform player;
     public bool on_cooldown;
+    public int player_max_health = 100;
+    public int player_current_health;
     // Start is called before the first frame update
     void Start()
     {
- 
+        player_current_health = player_max_health;
     }
 
 
@@ -89,39 +92,67 @@ public class Player_getshit : MonoBehaviour
 
     }
 
+
+    void check_death()
+    {
+        if (player_current_health < 0)
+        {
+            Debug.Log("player should be dying now");
+            controller.player_dies(1.0f);
+        }
+    }
+
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.tag == "Melee_Enemy_1")
+
+        if (on_cooldown == false)
         {
-            get_hit();
-            Debug.Log("Melee_Enemy_1 did melee damage");
-            hits_taken += 1;
+
+            if (other.tag == "Melee_Enemy_1")
+            {
+                get_hit();
+                Debug.Log("Melee_Enemy_1 did melee damage");
+                hits_taken += 1;
+                player_current_health -= 25;
+                check_death();
+            }
+
+
+            if (other.tag == "Melee_Enemy_touch")
+            {
+                get_hit();
+                Debug.Log("Melee_Enemy_1 touched player");
+                hits_taken += 1;
+                player_current_health -= 25;
+                check_death();
+            }
+
+
+            if (other.tag == "Range_Enemy_1")
+            {
+                get_hit();
+                Debug.Log("Range_enemy_1 projectile hit");
+                hits_taken += 1;
+                player_current_health -= 35;
+                check_death();
+            }
+
+            if (other.tag == "Range_Enemy_touch")
+            {
+                get_hit();
+                Debug.Log("Range_enemy_1 touched player");
+                hits_taken += 1;
+                player_current_health -= 25;
+                check_death();
+            }
+
         }
 
-
-        if (other.tag == "Melee_Enemy_touch")
-        {
-            get_hit();
-            Debug.Log("Melee_Enemy_1 touched player");
-            hits_taken += 1;
-        }
-
-
-        if (other.tag == "Range_Enemy_1")
-        {
-            get_hit();
-            Debug.Log("Range_enemy_1 projectile hit");
-            hits_taken += 1;
-        }
-
-        if (other.tag == "Range_Enemy_touch")
-        {
-            get_hit();
-            Debug.Log("Range_enemy_1 touched player");
-            hits_taken += 1;
-        }
-
+        else return;
     }
+
+
+
     // Update is called once per frame
     void Update()
     {

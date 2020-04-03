@@ -26,6 +26,7 @@ public class Hero_Controls : MonoBehaviour
     public Player_getshit playerhit;
     public SpriteRenderer playersprite;
     public bool playerdead;
+    public bool special_active;
 
     // Start is called before the first frame update
     void Start()
@@ -39,17 +40,22 @@ public class Hero_Controls : MonoBehaviour
     {
         if (other.tag == "boundary")
         {
-            playerdead = true;
-            playersprite.sortingOrder = 5;
-            anim.SetBool("diebool", true);
-            Debug.Log("player destroyed");
-            StartCoroutine(Die());
+            player_dies(1.5f);
         }
     }
 
-    IEnumerator Die()
+    public void player_dies(float death_timer1)
     {
-        yield return new WaitForSeconds(1.5f);
+        playerdead = true;
+        playersprite.sortingOrder = 5;
+        anim.SetBool("diebool", true);
+        Debug.Log("player destroyed");
+        StartCoroutine(Die(death_timer1));
+    }
+
+    IEnumerator Die(float death_timer2)
+    {
+        yield return new WaitForSeconds(death_timer2);
         Destroy(gameObject);
     }
 
@@ -90,6 +96,21 @@ public class Hero_Controls : MonoBehaviour
                 is_sprinting = false;
             }
 
+
+            if (Input.GetKey(KeyCode.Mouse1))
+            {
+                anim.SetBool("is_walk", false);
+                anim.SetBool("is_sprint", true);
+                special_active = true;
+            }
+
+
+            if (Input.GetKeyUp(KeyCode.Mouse1))
+            {
+                anim.SetBool("is_sprint", false);
+                special_active = false;
+            }
+
             //Call Jump
             if (Input.GetKeyDown(KeyCode.Space))
             {
@@ -103,7 +124,7 @@ public class Hero_Controls : MonoBehaviour
 
                 //anim.Play("normal_attack");
 
-                controller.attack(is_sprinting);
+                controller.attack(is_sprinting, special_active);
 
 
             }
@@ -141,7 +162,7 @@ public class Hero_Controls : MonoBehaviour
                 //adjust moving speed
                 if (moving_speed <= max_speed && is_sprinting == false)
                 {
-                    moving_speed = moving_speed + 0.1f;
+                    moving_speed = moving_speed + 0.15f;
                 }
 
                 if (moving_speed >= max_speed && is_sprinting == false)
@@ -153,7 +174,7 @@ public class Hero_Controls : MonoBehaviour
                 //adjust moving speed
                 if (moving_speed <= max_speed_sprint && is_sprinting == true)
                 {
-                    moving_speed = moving_speed + 0.1f;
+                    moving_speed = moving_speed + 0.15f;
                 }
 
 
@@ -195,7 +216,7 @@ public class Hero_Controls : MonoBehaviour
                 //adjust moving speed
                 if (moving_speed <= max_speed && is_sprinting == false)
                 {
-                    moving_speed = moving_speed + 0.1f;
+                    moving_speed = moving_speed + 0.15f;
                 }
 
                 if (moving_speed >= max_speed && is_sprinting == false)
@@ -206,7 +227,7 @@ public class Hero_Controls : MonoBehaviour
                 //adjust moving speed
                 if (moving_speed <= max_speed_sprint && is_sprinting == true)
                 {
-                    moving_speed = moving_speed + 0.1f;
+                    moving_speed = moving_speed + 0.15f;
                 }
 
                 //call move method

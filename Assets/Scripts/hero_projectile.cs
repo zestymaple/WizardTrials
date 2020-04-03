@@ -12,7 +12,7 @@ public class hero_projectile : MonoBehaviour
     void Start()
     {
         player = GameObject.FindWithTag("Player");
- 
+        transform.localScale = player.transform.localScale;
 
 
         if (player.transform.localScale.x == -1)
@@ -31,8 +31,20 @@ public class hero_projectile : MonoBehaviour
 
     }
 
-    // Update is called once per frame
-    void Update()
+
+    void OnTriggerEnter2D(Collider2D other)
+    {
+
+        if (other.tag == "Ground" || other.tag == "enemy" || other.tag == "Melee_Enemy_touch" || other.tag == "vines" || other.tag == "opaque" || other.tag == "non-climb")
+        {
+            Destroy(gameObject);
+        }
+
+
+    }
+
+        // Update is called once per frame
+        void Update()
     {
         
     }

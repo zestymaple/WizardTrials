@@ -8,7 +8,9 @@ public class Hero_Controller : MonoBehaviour
     private Rigidbody2D player_Rigidbody2D;
     public CircleCollider2D ground_collider;
     public Transform groundcheck;
+    public Transform vinecheck;
     public LayerMask groundlayer;
+    public LayerMask vineslayer;
     public float jump_speed = 2;
     public float jumpcoe = 0.75f;
     public float sprint_speed = 2;
@@ -16,10 +18,16 @@ public class Hero_Controller : MonoBehaviour
     public GameObject attack_hitbox_special;
     public Animator anim;
     public BoxCollider2D player_hitbox;
-    public Transform firepoint;
+    public Transform firepoint_1;
+    public Transform firepoint_2;
+    public Transform firepoint_3;
     public GameObject hero_projectile;
     public int hero_mana;
     public float midair_movement;
+    public bool wallclimbing;
+    public List<int> shotpattern_1;
+    public List<int> shotpattern_2;
+    public List<int> shotpattern_3;
 
     // Start is called before the first frame update
     void Start()
@@ -29,6 +37,9 @@ public class Hero_Controller : MonoBehaviour
         player_Rigidbody2D = GetComponent<Rigidbody2D>();
         ground_collider = GetComponent<CircleCollider2D>();
 
+        shotpattern_1 = new List<int> { 1, 2, 3 };
+        shotpattern_2 = new List<int> { 3, 2, 1 };
+        shotpattern_3 = new List<int> { 3, 1 };
     }
 
     // Update is called once per frame
@@ -49,13 +60,15 @@ public class Hero_Controller : MonoBehaviour
     void FixedUpdate()
     {
         grounded = Physics2D.OverlapCircle(groundcheck.position, 0.15f, groundlayer);
+        if (grounded == true) { wallclimbing = false; }
+        wallclimbing = Physics2D.OverlapCircle(vinecheck.position, 0.15f, vineslayer);
     }
 
 
-    public void attack(bool is_sprinting)
+    public void attack(bool is_sprinting, bool special_active)
     {
 
-        if (grounded == true && is_sprinting == false)
+        if (grounded == true && special_active == false)
         {
             Debug.Log("you attacked");
             StartCoroutine(AttackDuration_ground());
@@ -67,7 +80,7 @@ public class Hero_Controller : MonoBehaviour
         }
 
 
-        if (is_sprinting == true && hero_mana > 0)
+        if (special_active == true && hero_mana > 0)
         {
             StartCoroutine(AttackDuration_special());
         }
@@ -99,21 +112,43 @@ public class Hero_Controller : MonoBehaviour
         anim.SetTrigger("attack_special");
         Debug.Log("attack start");
         attack_hitbox_special.SetActive(true);
-        shoot();
+        StartCoroutine(shoot(shotpattern_1, 0.15f));
+        StartCoroutine(shoot(shotpattern_2, 0.30f));
+        StartCoroutine(shoot(shotpattern_3, 0.75f));
         yield return new WaitForSeconds(1);
         Debug.Log("attack ended");
         attack_hitbox_special.SetActive(false);
     }
 
-    public void shoot()
+    IEnumerator shoot(List<int> shots_fired, float time_to_wait)
     {
+        yield return new WaitForSeconds(time_to_wait);
         if (hero_mana > 0)
         {
-            Instantiate(hero_projectile, firepoint.position, firepoint.rotation);
-            hero_mana--;
-        }
+            foreach (int element in shots_fired)
+            {
+                Debug.Log(element);
+                if (element == 1)
+                {
+                    Instantiate(hero_projectile, firepoint_1.position, firepoint_1.rotation);
+                    hero_mana--;
+                }
 
-        else return;
+                if (element == 2)
+                {
+                    Instantiate(hero_projectile, firepoint_2.position, firepoint_2.rotation);
+                    hero_mana--;
+                }
+
+                if (element == 3)
+                {
+                    Instantiate(hero_projectile, firepoint_3.position, firepoint_3.rotation);
+                    hero_mana--;
+                }
+
+                hero_mana--;
+            }          
+        }
     }
 
 
@@ -158,8 +193,56 @@ public class Hero_Controller : MonoBehaviour
     }
 
 
+
+
+
     public void Jump(bool is_sprinting)
     {
+
+        if (wallclimbing == true)
+        {
+            if (is_sprinting == false)
+            {
+
+                grounded = false;
+
+                float x = player_Rigidbody2D.velocity.x;
+                float x2 = Mathf.Abs(x);
+
+                float x3 = x2 * jumpcoe;
+                float x4 = x * jumpcoe;
+
+                float calc_jump_speed_y = jump_speed + x3;
+                float calc_jump_speed_x = x + x4;
+
+
+                player_Rigidbody2D.velocity = new Vector2(calc_jump_speed_x *2, calc_jump_speed_y * 2);
+                return;
+            }
+            if (is_sprinting == true)
+            {
+                grounded = false;
+
+                float x = player_Rigidbody2D.velocity.x;
+                float x2 = Mathf.Abs(x);
+
+                float x3 = x2 * (jumpcoe * 1.25f);
+                float x4 = x * (jumpcoe * 1.25f);
+
+                float calc_jump_speed_y = jump_speed + x3;
+                float calc_jump_speed_x = x + x4;
+
+                player_Rigidbody2D.velocity = new Vector2(calc_jump_speed_x *2, calc_jump_speed_y * 2);
+                return;
+            }
+
+        }
+
+
+
+
+
+
         if (grounded == true)
         {
 
