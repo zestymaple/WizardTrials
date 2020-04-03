@@ -58,6 +58,12 @@ public class SaveSystem : MonoBehaviour
         // Load Save
         Debug.Log("Loading Save");
 
+        if (Player == null)
+        {
+            Scene scene = SceneManager.GetActiveScene();
+            SceneManager.LoadScene(scene.name);
+        }
+
         // Player Position
         if (PlayerPrefs.HasKey("player.location.x") && PlayerPrefs.HasKey("player.location.y") &&
             PlayerPrefs.HasKey("player.location.z"))

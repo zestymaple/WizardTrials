@@ -5,6 +5,7 @@ using UnityEngine;
 public class Hero_Controls : MonoBehaviour
 {
     public Hero_Controller controller;
+    public GameObject deathMenu;
     public float moving_speed = 0;
     public float max_speed = 5;
     public float max_speed_sprint = 10;
@@ -57,6 +58,8 @@ public class Hero_Controls : MonoBehaviour
     {
         yield return new WaitForSeconds(death_timer2);
         Destroy(gameObject);
+        // Show Death Screen
+        deathMenu.SetActive(true);
     }
 
 
