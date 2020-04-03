@@ -1,11 +1,15 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerHealth : MonoBehaviour
 {
     [SerializeField]
     Slider healthBar;
+
+    public TMP_Text healthText;
 
     float maxHealth = 100;
     float curHealth;

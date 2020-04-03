@@ -1,12 +1,15 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerHealthFull : MonoBehaviour
 {
     [SerializeField]
     Slider healthBar;
-
+    public TMP_Text healthText;
+    
     float maxHealth = 100;
     float curHealth;
     // Start is called before the first frame update
