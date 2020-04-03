@@ -9,8 +9,8 @@ EditorBuildSettings:
     path: Assets/Scenes/Menu.unity
     guid: bb24e4fb86346264c9d9200ebdb9cf34
   - enabled: 1
-    path: Assets/Scenes/Swamp_01.unity
-    guid: c5a8b15259ce0614ca800142060384d4
+    path: Assets/Swamp_01.unity
+    guid: 8f63ad7fbbd8ed0429b15e19aaa08188
   - enabled: 0
     path: Assets/Scenes/BaseSceneSample.unity
     guid: 768705b1096663c49bd86d5f9a85d5a3
