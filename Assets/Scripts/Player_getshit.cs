@@ -5,6 +5,7 @@ using UnityEngine;
 public class Player_getshit : MonoBehaviour
 {
     public Hero_Controls controller;
+    public Hero_Controller controller2;
     public Animator anim;
     public int hits_taken;
     public Rigidbody2D playerbod;
@@ -15,6 +16,9 @@ public class Player_getshit : MonoBehaviour
     public bool on_cooldown;
     public int player_max_health = 100;
     public int player_current_health;
+    private Vector2 total_knock_str;
+    public flash_screen flash_screenobject;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -25,6 +29,7 @@ public class Player_getshit : MonoBehaviour
     void get_hit()
     {
         anim.SetTrigger("get_hit");
+        StartCoroutine(flash_screenobject.LerpUp());
         StartCoroutine(knockback());
         StartCoroutine(cooldown(0.75f));
     }
@@ -82,7 +87,28 @@ public class Player_getshit : MonoBehaviour
                 ybase = 1.5f;
             }
 
-            playerbod.AddForce(new Vector2(xbase + playerbod.velocity.x * x * 2, ybase + playerbod.velocity.y * y * 2));
+            total_knock_str.x = xbase + playerbod.velocity.x * x * 2;
+            total_knock_str.y = ybase + playerbod.velocity.y * y * 2;
+
+
+            if (controller2.grounded == true)
+            {
+
+                if (total_knock_str.x < 5)
+                {
+                    float x_add = Mathf.Sign(total_knock_str.x) * 3;
+                    total_knock_str.x += x_add;
+                }
+
+                if (total_knock_str.y < 5)
+                {
+                    float y_add = Mathf.Sign(total_knock_str.y) * 3;
+                    total_knock_str.y += y_add;
+                }
+            }
+
+
+            playerbod.AddForce(new Vector2(total_knock_str.x, total_knock_str.y));
             //playerbod.AddForce(new Vector2(knockback_dir.x * -1, knockback_dir.y * -1));
 
         }

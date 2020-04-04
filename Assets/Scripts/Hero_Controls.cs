@@ -76,7 +76,7 @@ public class Hero_Controls : MonoBehaviour
             return;
         }
 
-        if (playerhit.on_cooldown == false || playerdead == false)
+        if (playerhit.on_cooldown == false && playerdead == false)
 
         {
 
