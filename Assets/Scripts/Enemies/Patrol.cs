@@ -8,15 +8,35 @@ public class Patrol : MonoBehaviour
     public float distance;
 
     private bool movingLeft = true;
-
+    public Rigidbody2D rb;
     public Transform groundDetection;
+    public Enemy_take_damage enemy_dmg_script;
+    public LayerMask walllayer;
+    public bool walltouch;
+    public Transform walltrans;
+
+    void Start()
+    {
+        rb = GetComponent<Rigidbody2D>();
+    }
 
     void Update()
+    {
+        walltouch = Physics2D.OverlapCircle(walltrans.position, 0.15f, walllayer);
+
+        if (enemy_dmg_script.cooldown == false)
+        {
+            move_enemy();
+        }
+    }
+
+
+    public void move_enemy()
     {
         transform.Translate(Vector2.left * speed * Time.deltaTime);
 
         RaycastHit2D groundInfo = Physics2D.Raycast(groundDetection.position, Vector2.down, distance);
-        if (groundInfo.collider == false)
+        if (groundInfo.collider == false || walltouch == true)
         {
             if (movingLeft == true)
             {

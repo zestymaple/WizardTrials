@@ -11,22 +11,54 @@ public class Rangesorcerer : MonoBehaviour
 
     private float timeBtwShots;
     public float startTimeBtwShots;
-
+    public left_right facedir;
     public GameObject projectile;
-
+    public Transform fireball_spawn;
     public Transform player;
+    public sorc_takes_damage enemy_dmg_script;
 
     private void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player").transform;
 
         timeBtwShots = startTimeBtwShots;
+
     }
 
     private void Update()
     {
+
+        if (enemy_dmg_script.cooldown == false)
+        {
+            sorc_alive();
+        }
+
+    }
+
+
+    public void sorc_alive()
+    {
+        if (facedir.dirNum == 1)
+        {
+            Vector3 flip_dir = transform.localScale;
+            flip_dir.x = -1;
+            transform.localScale = flip_dir;
+        }
+
+        if (facedir.dirNum == -1)
+        {
+            Vector3 flip_dir = transform.localScale;
+            flip_dir.x = 1;
+            transform.localScale = flip_dir;
+        }
+
+
+
+
+
         if (Vector2.Distance(transform.position, player.position) < startMovingDistance)
         {
+
             transform.position = Vector2.MoveTowards(transform.position, player.position, 0 * Time.deltaTime);
 
 
@@ -47,7 +79,7 @@ public class Rangesorcerer : MonoBehaviour
             {
                 //Quanternion = no rotation for projectile.
                 //Instantiate(projectile, transform.position, Quaternion.identity);
-                Instantiate(projectile, transform.position, Quaternion.identity);
+                Instantiate(projectile, fireball_spawn.position, fireball_spawn.rotation);
                 timeBtwShots = startTimeBtwShots;
             }
             else
@@ -55,5 +87,6 @@ public class Rangesorcerer : MonoBehaviour
                 timeBtwShots -= Time.deltaTime;
             }
         }
+
     }
 }

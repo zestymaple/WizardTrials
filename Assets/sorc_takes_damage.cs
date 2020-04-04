@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Enemy_take_damage : MonoBehaviour
+public class sorc_takes_damage : MonoBehaviour
 {
     public Rigidbody2D rb;
     public int enemy_max_hp = 100;
@@ -16,7 +16,7 @@ public class Enemy_take_damage : MonoBehaviour
     public Animator anim;
     public bool enemydead;
     public CircleCollider2D hitbox;
-    public Patrol patrol;
+    public Rangesorcerer rangesorc;
     public BoxCollider2D boxcol;
 
     // Start is called before the first frame update
@@ -73,8 +73,8 @@ public class Enemy_take_damage : MonoBehaviour
         if (other.tag == "Player_hitbox_projectile")
         {
             anim2.SetTrigger("get_hit");
-            StartCoroutine(Freeze(freeze_dur));
             Debug.Log("hit detected projectille");
+            StartCoroutine(Freeze(freeze_dur));
             enemy_current_hp -= player_proj_dmg;
             cooldown = true;
             check_death();
@@ -88,7 +88,7 @@ public class Enemy_take_damage : MonoBehaviour
         if (enemy_current_hp <= 0)
         {
 
-            patrol.enabled = !patrol.enabled;
+            rangesorc.enabled = !rangesorc.enabled;
             StartCoroutine(Freeze(freeze_dur));
             //disable collider
             cooldown = true;
@@ -111,9 +111,9 @@ public class Enemy_take_damage : MonoBehaviour
 
     IEnumerator Die(float death_timer2)
     {
-        rb.gravityScale = 0;
-        Destroy(boxcol);
         cooldown = true;
+        rb.gravityScale = 0;
+        boxcol.enabled = !boxcol.enabled;
         yield return new WaitForSeconds(death_timer2);
         Destroy(gameObject);
     }
@@ -122,6 +122,6 @@ public class Enemy_take_damage : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 }
