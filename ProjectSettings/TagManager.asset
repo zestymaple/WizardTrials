@@ -17,6 +17,7 @@ TagManager:
   - boundary
   - Player_hitbox_projectile
   - opaque
+  - SaveTorch
   layers:
   - Default
   - TransparentFX

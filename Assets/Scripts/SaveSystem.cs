@@ -37,18 +37,18 @@ public class SaveSystem : MonoBehaviour
         SceneManager.sceneLoaded -= OnSceneLoaded;
     }
 
-    public void SaveGame()
-    {
-        // Player Position
-        var position = Player.position;
-        Debug.Log($"Saving Player Position: {position.x}:{position.y}:{position.z}");
-        PlayerPrefs.SetFloat("player.location.x", position.x);
-        PlayerPrefs.SetFloat("player.location.y", position.y);
-        PlayerPrefs.SetFloat("player.location.z", position.z);
-        // Keyboard Settings
-        // Controller Settings
-        // Player Progress? Boss Fight / Items / Health / Stamina
-    }
+    // public void SaveGame()
+    // {
+    //     // Player Position
+    //     var position = Player.position;
+    //     Debug.Log($"Saving Player Position: {position.x}:{position.y}:{position.z}");
+    //     PlayerPrefs.SetFloat("player.location.x", position.x);
+    //     PlayerPrefs.SetFloat("player.location.y", position.y);
+    //     PlayerPrefs.SetFloat("player.location.z", position.z);
+    //     // Keyboard Settings
+    //     // Controller Settings
+    //     // Player Progress? Boss Fight / Items / Health / Stamina
+    // }
 
     // Load current player setting
     // Check if setting exists using .Haskey()
