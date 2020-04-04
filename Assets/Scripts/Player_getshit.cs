@@ -26,7 +26,7 @@ public class Player_getshit : MonoBehaviour
     void Start()
     {
         player_current_health = player_max_health;
-        healthBar.maxValue = (float) player_max_health;
+        healthBar.maxValue = player_max_health;
     }
 
 
@@ -186,6 +186,6 @@ public class Player_getshit : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        healthBar.value = (float) player_current_health;
+        healthBar.value = player_current_health;
     }
 }

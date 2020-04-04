@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 public class Hero_Controller : MonoBehaviour
@@ -23,7 +24,8 @@ public class Hero_Controller : MonoBehaviour
     public Transform firepoint_2;
     public Transform firepoint_3;
     public GameObject hero_projectile;
-    public int hero_mana;
+    public int hero_max_mana = 100;
+    public int hero_current_mana;
     public float midair_movement;
     public bool wallclimbing;
     public List<int> shotpattern_1;
@@ -35,8 +37,9 @@ public class Hero_Controller : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        hero_mana = 100;
-        staminaBar.maxValue = hero_mana;
+        hero_current_mana = hero_max_mana;
+        staminaBar.maxValue = hero_max_mana;
+        
         anim = GetComponent<Animator>();
         player_Rigidbody2D = GetComponent<Rigidbody2D>();
         ground_collider = GetComponent<CircleCollider2D>();
@@ -60,7 +63,7 @@ public class Hero_Controller : MonoBehaviour
             anim.ResetTrigger("attack");
         }
 
-        staminaBar.value = hero_mana;
+        staminaBar.value = hero_current_mana;
     }
 
     void FixedUpdate()
@@ -86,7 +89,7 @@ public class Hero_Controller : MonoBehaviour
         }
 
 
-        if (special_active == true && hero_mana > 0)
+        if (special_active == true && hero_current_mana > 0)
         {
             StartCoroutine(AttackDuration_special());
         }
@@ -129,7 +132,7 @@ public class Hero_Controller : MonoBehaviour
     IEnumerator shoot(List<int> shots_fired, float time_to_wait)
     {
         yield return new WaitForSeconds(time_to_wait);
-        if (hero_mana > 0)
+        if (hero_current_mana > 0)
         {
             foreach (int element in shots_fired)
             {
@@ -137,22 +140,22 @@ public class Hero_Controller : MonoBehaviour
                 if (element == 1)
                 {
                     Instantiate(hero_projectile, firepoint_1.position, firepoint_1.rotation);
-                    hero_mana--;
+                    hero_current_mana--;
                 }
 
                 if (element == 2)
                 {
                     Instantiate(hero_projectile, firepoint_2.position, firepoint_2.rotation);
-                    hero_mana--;
+                    hero_current_mana--;
                 }
 
                 if (element == 3)
                 {
                     Instantiate(hero_projectile, firepoint_3.position, firepoint_3.rotation);
-                    hero_mana--;
+                    hero_current_mana--;
                 }
 
-                hero_mana--;
+                hero_current_mana--;
             }          
         }
     }
