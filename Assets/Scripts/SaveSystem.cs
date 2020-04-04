@@ -79,13 +79,12 @@ public class SaveSystem : MonoBehaviour
         }
         else
         {
-            float x = -7.31f;
-            float y = 0.78f;
-            float z = 0f;
+            var Start = new Vector3(-7f, 0.8f, 0f);
+            var Test1 = new Vector3(28f, 0.8f, 0f);
 
-            Debug.Log($"Loading DEFAULT Player Position: {x}:{y}:{z}");
-            Vector3 posVec = new Vector3(x, y, z);
-            Player.position = posVec;
+            Vector3 newPlayerPosition = Test1;
+            Debug.Log($"Loading DEFAULT Player Position: {newPlayerPosition.x}:{newPlayerPosition.y}:{newPlayerPosition.z}");
+            Player.position = newPlayerPosition;
         }
 
         // Keyboard & Controller Settings can be directly checked from the player controller
