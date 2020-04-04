@@ -90,8 +90,9 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 2e26a35bffab44c4e86cb417e226dd19, type: 3}
+  m_SortingOrder: 3
+  m_Sprite: {fileID: 9036942657368011877, guid: 53212e387da0b9a498f6286006645ffe,
+    type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -116,6 +117,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Anim: {fileID: 0}
   player: {fileID: 0}
+  PotionValue: 0
 --- !u!58 &5226540628610159064
 CircleCollider2D:
   m_ObjectHideFlags: 0
