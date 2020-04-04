@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Player_getshit : MonoBehaviour
 {
@@ -19,10 +20,13 @@ public class Player_getshit : MonoBehaviour
     private Vector2 total_knock_str;
     public flash_screen flash_screenobject;
 
+    public Slider healthBar;
+
     // Start is called before the first frame update
     void Start()
     {
         player_current_health = player_max_health;
+        healthBar.maxValue = player_max_health;
     }
 
 
@@ -121,7 +125,7 @@ public class Player_getshit : MonoBehaviour
 
     void check_death()
     {
-        if (player_current_health < 0)
+        if (player_current_health <= 0)
         {
             Debug.Log("player should be dying now");
             controller.player_dies(1.0f);
@@ -182,6 +186,6 @@ public class Player_getshit : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        healthBar.value = player_current_health;
     }
 }
