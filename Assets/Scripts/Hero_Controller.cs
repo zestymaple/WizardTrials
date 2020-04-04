@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Hero_Controller : MonoBehaviour
 {
@@ -28,11 +29,14 @@ public class Hero_Controller : MonoBehaviour
     public List<int> shotpattern_1;
     public List<int> shotpattern_2;
     public List<int> shotpattern_3;
+    
+    public Slider staminaBar;
 
     // Start is called before the first frame update
     void Start()
     {
         hero_mana = 100;
+        staminaBar.maxValue = hero_mana;
         anim = GetComponent<Animator>();
         player_Rigidbody2D = GetComponent<Rigidbody2D>();
         ground_collider = GetComponent<CircleCollider2D>();
@@ -55,6 +59,8 @@ public class Hero_Controller : MonoBehaviour
             anim.ResetTrigger("attack_special");
             anim.ResetTrigger("attack");
         }
+
+        staminaBar.value = hero_mana;
     }
 
     void FixedUpdate()
