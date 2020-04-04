@@ -8,7 +8,7 @@ public class PlayerHealthFull : MonoBehaviour
 {
     [SerializeField]
     Slider healthBar;
-    public TMP_Text healthText;
+    
     
     float maxHealth = 100;
     float curHealth;
@@ -33,6 +33,6 @@ public class PlayerHealthFull : MonoBehaviour
 
     void Update()
     {
-        healthText.text = curHealth.ToString() + " %";
+        
     }
 }

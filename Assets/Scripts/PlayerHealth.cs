@@ -9,14 +9,15 @@ public class PlayerHealth : MonoBehaviour
     [SerializeField]
     Slider healthBar;
 
-    public TMP_Text healthText;
+    
 
     float maxHealth = 100;
     float curHealth;
     // Start is called before the first frame update
     void Start()
     {
-        healthBar.value = maxHealth;
+        var maxHealth1 = maxHealth;
+        healthBar.value = maxHealth1;
         curHealth = healthBar.value;
 
     }
@@ -34,6 +35,6 @@ public class PlayerHealth : MonoBehaviour
 
     void Update()
     {
-        healthText.text = curHealth.ToString() + " %";
+        
     }
 }
