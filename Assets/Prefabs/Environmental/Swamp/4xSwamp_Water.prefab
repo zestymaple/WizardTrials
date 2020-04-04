@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3538109306192638571}
   - component: {fileID: 3538109306192638572}
   - component: {fileID: 3538109306192638573}
-  m_Layer: 0
+  m_Layer: 4
   m_Name: 4xSwamp_Water
   m_TagString: Untagged
   m_Icon: {fileID: 0}
