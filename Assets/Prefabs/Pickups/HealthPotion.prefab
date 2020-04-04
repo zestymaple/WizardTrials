@@ -117,7 +117,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Anim: {fileID: 0}
   player: {fileID: 0}
-  PotionValue: 0
+  PotionValue: 50
 --- !u!58 &5226540628610159064
 CircleCollider2D:
   m_ObjectHideFlags: 0

@@ -133,4 +133,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Anim: {fileID: 0}
   player: {fileID: 0}
-  PotionValue: 15
+  PotionValue: 25
