@@ -62,6 +62,7 @@ public class SaveSystem : MonoBehaviour
         {
             Scene scene = SceneManager.GetActiveScene();
             SceneManager.LoadScene(scene.name);
+            return;
         }
 
         // Player Position
