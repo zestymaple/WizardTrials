@@ -634,12 +634,14 @@ MonoBehaviour:
   firepoint_3: {fileID: 5488213284379581166}
   hero_projectile: {fileID: 880077163812388130, guid: be9deb64716aba54ca0d9bfaf5aa944e,
     type: 3}
-  hero_mana: 0
+  hero_max_mana: 100
+  hero_current_mana: 0
   midair_movement: 0.8
   wallclimbing: 0
   shotpattern_1: 
   shotpattern_2: 
   shotpattern_3: 
+  staminaBar: {fileID: 0}
 --- !u!1 &5438209674295645719
 GameObject:
   m_ObjectHideFlags: 0
@@ -723,6 +725,7 @@ MonoBehaviour:
   player_max_health: 100
   player_current_health: 0
   flash_screenobject: {fileID: 7299994051977194820}
+  healthBar: {fileID: 0}
 --- !u!1 &5978821340179955308
 GameObject:
   m_ObjectHideFlags: 0
