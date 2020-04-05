@@ -38,6 +38,14 @@ public class Player_getshit : MonoBehaviour
         StartCoroutine(cooldown(0.75f));
     }
 
+    void get_hitboss()
+    {
+        anim.SetTrigger("get_hit");
+        StartCoroutine(flash_screenobject.LerpUp());
+        StartCoroutine(knockback());
+        StartCoroutine(cooldown(0.75f));
+    }
+
     IEnumerator cooldown(float waitTime)
     {
         anim.SetBool("get_hitbool", true);
@@ -137,6 +145,15 @@ public class Player_getshit : MonoBehaviour
 
         if (on_cooldown == false)
         {
+
+            if (other.tag == "boss_hitbox")
+            {
+                get_hitboss();
+                Debug.Log("Melee_Enemy_1 did melee damage");
+                hits_taken += 1;
+                player_current_health -= 25;
+                check_death();
+            }
 
             if (other.tag == "Melee_Enemy_1")
             {

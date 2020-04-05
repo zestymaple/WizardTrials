@@ -117,6 +117,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 5
   rb: {fileID: -705411675846393338}
+  max_range: 10
 --- !u!50 &-705411675846393338
 Rigidbody2D:
   serializedVersion: 4

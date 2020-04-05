@@ -14,6 +14,7 @@ public class Projectile : MonoBehaviour
     public Rigidbody2D rb;
     public float closeDistance = 5;
     public Transform enemy;
+    public float max_range;
 
     private void Start()
     {
@@ -80,4 +81,13 @@ public class Projectile : MonoBehaviour
         yield return new WaitForSeconds(2);
         Destroy(gameObject);*/
     }
+
+    void destroy_self()
+    {
+        if (Vector2.Distance(transform.position, player.position) > max_range)
+        {
+            Destroy(gameObject);
+        }
+    }
+
 }

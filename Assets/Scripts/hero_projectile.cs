@@ -8,6 +8,7 @@ public class hero_projectile : MonoBehaviour
     public float speed = 20f;
     public Rigidbody2D rb;
     GameObject player;
+    public float max_range;
     // Start is called before the first frame update
     void Start()
     {
@@ -45,8 +46,17 @@ public class hero_projectile : MonoBehaviour
     }
 
         // Update is called once per frame
-        void Update()
+    void Update()
     {
-        
+        if (Vector2.Distance(transform.position, player.transform.position) >= max_range)
+        {
+            kill();
+        }
+    }
+
+
+    void kill()
+    {
+        Destroy(gameObject);
     }
 }

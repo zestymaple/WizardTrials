@@ -19,6 +19,12 @@ TagManager:
   - opaque
   - SaveTorch
   - Potion
+  - check_point
+  - check_point_1
+  - check_point_2
+  - check_point_3
+  - check_point_4
+  - boss_hitbox
   layers:
   - Default
   - TransparentFX
@@ -38,7 +44,7 @@ TagManager:
   - Vines
   - Non-Climb
   - MiniMap
-  - 
+  - notboss
   - 
   - 
   - 
