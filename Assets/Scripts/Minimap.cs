@@ -10,7 +10,6 @@ public class Minimap : MonoBehaviour
     private void LateUpdate()
     {
         Vector3 newPosition = MainCamera.position;
-        newPosition.y = transform.position.y;
         transform.position = newPosition;
     }
 }
