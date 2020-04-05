@@ -9,8 +9,8 @@ public class smallPotion : MonoBehaviour
     public Hero_Controller playerM;
     public bool Health_OR_Mana;
 
-    private int PotionValueH = 15;
-    private int PotionValueM = 20;
+    public int PotionValueH = 15;
+    public int PotionValueM = 20;
 
     // Start is called before the first frame update
     void Start()
