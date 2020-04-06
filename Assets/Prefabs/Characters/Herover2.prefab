@@ -25,7 +25,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 953575044135755484}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.416, y: 0.34399998, z: 0}
+  m_LocalPosition: {x: -0.303, y: 0.344, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 6590804206754491237}
@@ -44,9 +44,9 @@ CapsuleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.34973115, y: -0.31087497}
-  m_Size: {x: 0.59534127, y: 0.37826532}
-  m_Direction: 1
+  m_Offset: {x: 0.4139835, y: -0.14743838}
+  m_Size: {x: 0.46683666, y: 0.70824444}
+  m_Direction: 0
 --- !u!1 &997823661849899494
 GameObject:
   m_ObjectHideFlags: 0
@@ -583,7 +583,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: d4d64c2cf3e6747918f85172c9b9801d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -745,6 +745,7 @@ MonoBehaviour:
   shotpattern_1: 
   shotpattern_2: 
   shotpattern_3: 
+  is_attacking: 0
   staminaBar: {fileID: 0}
 --- !u!1 &5438209674295645719
 GameObject:
@@ -829,6 +830,7 @@ MonoBehaviour:
   player_max_health: 100
   player_current_health: 0
   flash_screenobject: {fileID: 7299994051977194820}
+  boundary: 0
   healthBar: {fileID: 0}
 --- !u!1 &5978821340179955308
 GameObject:
@@ -874,9 +876,9 @@ CapsuleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.36804163, y: -0.35}
-  m_Size: {x: 0.67981404, y: 0.24881902}
-  m_Direction: 1
+  m_Offset: {x: 0.41075522, y: -0.2476029}
+  m_Size: {x: 0.3796135, y: 0.8846093}
+  m_Direction: 0
 --- !u!1 &6216948302996527147
 GameObject:
   m_ObjectHideFlags: 0

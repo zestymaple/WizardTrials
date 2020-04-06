@@ -5,7 +5,7 @@ using UnityEngine;
 public class djinn_take_damage : MonoBehaviour
 {
     public Rigidbody2D rb;
-    public int enemy_max_hp = 100;
+    public int enemy_max_hp;
     public int enemy_current_hp;
     public int player_reg_dmg;
     public int player_spc_dmg;
@@ -17,8 +17,10 @@ public class djinn_take_damage : MonoBehaviour
     public bool enemydead;
     public CircleCollider2D hitbox;
     public move_to_player djinn_mover;
+    public difficulty_settings settings;
     void Start()
     {
+        enemy_max_hp = settings.get_health(difficulty_settings.Enemies.Djinn);
         enemy_current_hp = enemy_max_hp;
         anim = GetComponent<Animator>();
     }

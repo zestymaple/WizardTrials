@@ -99,7 +99,21 @@ public class Hero_Controls : MonoBehaviour
                 is_sprinting = false;
             }
 
+            //turn on special
+            if (Input.GetAxisRaw("sprinting") == 1)
+            {
+                anim.SetBool("is_walk", false);
+                anim.SetBool("is_sprint", true);
+                is_sprinting = true;
+            }
+            else if (Input.GetAxisRaw("sprinting") < 1)
+            {
+                    anim.SetBool("is_sprint", false);
+                    is_sprinting = false;
+            }
 
+
+            //turn on special
             if (Input.GetKey(KeyCode.Mouse1))
             {
                 anim.SetBool("is_walk", false);
@@ -114,15 +128,26 @@ public class Hero_Controls : MonoBehaviour
                 special_active = false;
             }
 
+            //turn on special
+            if (Input.GetAxisRaw("special_active") == 1)
+            {
+                special_active = true;
+            }
+            else if (Input.GetAxisRaw("special_active") < 1)
+            {
+                    special_active = false;
+            }
+
+
             //Call Jump
-            if (Input.GetKeyDown(KeyCode.Space))
+            if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.Joystick1Button2))
             {
                 anim.SetTrigger("jump_pressed");
                 controller.Jump(is_sprinting);
             }
 
             //call attack
-            if (Input.GetKeyDown(KeyCode.Mouse0))
+            if (Input.GetKeyDown(KeyCode.Mouse0) || Input.GetKeyDown(KeyCode.Joystick1Button0))
             {
 
                 //anim.Play("normal_attack");
@@ -282,7 +307,7 @@ public class Hero_Controls : MonoBehaviour
 
 
         //ENTER RIGHT STATE
-        if (Input.GetKey(KeyCode.D) && !(Input.GetKey(KeyCode.A)))
+        if (     (Input.GetKey(KeyCode.D) || Input.GetAxis("Horizontal") == 1)      &&    !( (Input.GetKey(KeyCode.A)))   )
         {
 
         
@@ -296,7 +321,7 @@ public class Hero_Controls : MonoBehaviour
         }
 
         //ENTER LEFT STATE
-        if (Input.GetKey(KeyCode.A) && !(Input.GetKey(KeyCode.D)))
+        if ((Input.GetKey(KeyCode.A) || Input.GetAxis("Horizontal") == -1) && !(Input.GetKey(KeyCode.D)))
         {
             if (current_state == State.right)
             {

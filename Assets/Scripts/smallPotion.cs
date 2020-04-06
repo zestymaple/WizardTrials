@@ -15,6 +15,8 @@ public class smallPotion : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        playerH = GameObject.FindGameObjectWithTag("Player_self_hitbox").GetComponent<Player_getshit>();
+        playerM = GameObject.FindGameObjectWithTag("Player").GetComponent<Hero_Controller>();
         Anim = GetComponent<Animator>();
         Anim.SetBool("Health_OR_Mana", Health_OR_Mana);
     }

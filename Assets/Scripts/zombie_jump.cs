@@ -15,6 +15,8 @@ public class zombie_jump : MonoBehaviour
     public bool cooldown;
     public float freezetime;
     public float max_range;
+    private float rand;
+    private int rand2;
     // Start is called before the first frame update
     void Start()
     {
@@ -24,12 +26,24 @@ public class zombie_jump : MonoBehaviour
         //rb.velocity = transform.right * movespeed * 5 * -1;
         // InvokeRepeating("move", 0f, movetimer);
         InvokeRepeating("jump", 5f, movetimer + 1);
+        InvokeRepeating("generate_random", 0f, 4f);
     }
 
     // Update is called once per frame
     void Update()
-    {        
-        move();
+    {
+
+        if (cooldown == true)
+        {
+            moverandom();
+        }
+
+        if (cooldown == false)
+        {
+            move();
+        }
+
+
         if (playdir.dirNum == 1)
         {
             Vector3 flip_dir = transform.localScale;
@@ -57,6 +71,29 @@ public class zombie_jump : MonoBehaviour
         if (Vector2.Distance(transform.position, player.position) >= max_range)
         {
             kill();
+        }
+
+    }
+
+    void generate_random()
+    {
+        rand = Random.Range(0, 1);
+        rand2 = Mathf.RoundToInt(rand);
+        StartCoroutine(cooldown_mover());
+    }
+
+    IEnumerator cooldown_mover()
+    {
+        cooldown = true;
+        yield return new WaitForSeconds(2f);
+        cooldown = false;
+    }
+
+    void moverandom()
+    {
+       if (rand2 == 1)
+        {
+            rb.velocity = new Vector2(movespeed * -1, rb.velocity.y);
         }
 
     }

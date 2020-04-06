@@ -25,6 +25,11 @@ TagManager:
   - check_point_3
   - check_point_4
   - boss_hitbox
+  - settings_tag
+  - boundary_explosion
+  - ghost_hit
+  - Djinn_hit
+  - skelly_touch
   layers:
   - Default
   - TransparentFX
@@ -45,8 +50,8 @@ TagManager:
   - Non-Climb
   - MiniMap
   - notboss
-  - 
-  - 
+  - slime_zombies
+  - boss
   - 
   - 
   - 

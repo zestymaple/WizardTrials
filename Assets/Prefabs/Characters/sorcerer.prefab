@@ -5060,6 +5060,7 @@ GameObject:
   - component: {fileID: 6643760966651628309}
   - component: {fileID: 6994195739003144521}
   - component: {fileID: 7448017684349488525}
+  - component: {fileID: 6300460649451706787}
   m_Layer: 10
   m_Name: sorcerer
   m_TagString: enemy
@@ -5099,10 +5100,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 0.5
-  startMovingDistance: 4
+  startMovingDistance: 7
   stoppingDistance: 2
   retreatDistance: 1.5
-  startTimeBtwShots: 2
+  startTimeBtwShots: 2.8
   facedir: {fileID: 6994195739003144521}
   projectile: {fileID: 4958741104550536299, guid: 80d76ba42fb911046978a97145a98b9f,
     type: 3}
@@ -5264,6 +5265,20 @@ MonoBehaviour:
   hitbox: {fileID: 2721775120130228265}
   rangesorc: {fileID: 6643760966651628298}
   boxcol: {fileID: 6643760966651628309}
+  settings: {fileID: 6300460649451706787}
+--- !u!114 &6300460649451706787
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6643760966651628302}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8475122ace54a1141baebe95adcc1ef9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  diff: 0
 --- !u!1 &7020256488636553171
 GameObject:
   m_ObjectHideFlags: 0

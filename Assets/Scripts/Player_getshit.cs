@@ -19,6 +19,8 @@ public class Player_getshit : MonoBehaviour
     public int player_current_health;
     private Vector2 total_knock_str;
     public flash_screen flash_screenobject;
+    public bool boundary;
+    public bool skelly;
 
     public Slider healthBar;
 
@@ -38,6 +40,15 @@ public class Player_getshit : MonoBehaviour
         StartCoroutine(cooldown(0.75f));
     }
 
+    void get_hit_slow()
+    {
+        anim.SetTrigger("get_hit");
+        StartCoroutine(flash_screenobject.LerpUp());
+        StartCoroutine(knockback());
+        StartCoroutine(cooldown(0.1f));
+    }
+
+
     void get_hitboss()
     {
         anim.SetTrigger("get_hit");
@@ -53,6 +64,7 @@ public class Player_getshit : MonoBehaviour
         yield return new WaitForSeconds(waitTime);
         on_cooldown = false;
         anim.SetBool("get_hitbool", false);
+        skelly = false;
     }
 
 
@@ -119,8 +131,21 @@ public class Player_getshit : MonoBehaviour
                 }
             }
 
+            if (skelly == true && boundary == false)
+            {
+                playerbod.AddForce(new Vector2(0, 0));
+            }
 
-            playerbod.AddForce(new Vector2(total_knock_str.x, total_knock_str.y));
+            if (boundary == true)
+            {
+                playerbod.AddForce(new Vector2(total_knock_str.x * 2, total_knock_str.y * 2));
+            }
+
+            if (boundary == false)
+            {
+                playerbod.AddForce(new Vector2(total_knock_str.x, total_knock_str.y));
+            }
+
             //playerbod.AddForce(new Vector2(knockback_dir.x * -1, knockback_dir.y * -1));
 
         }
@@ -145,6 +170,26 @@ public class Player_getshit : MonoBehaviour
 
         if (on_cooldown == false)
         {
+            boundary = false;
+
+            if (other.tag == "boundary_explosion")
+            {
+                boundary = true;
+                get_hitboss();
+                Debug.Log("BOUNDARY HIT----------------------------------");
+                hits_taken += 1;
+                check_death();
+            }
+
+            if (other.tag =="skelly_touch")
+            {
+                skelly = true;
+                get_hit_slow();
+                Debug.Log("skelly touch");
+                hits_taken += 1;
+                player_current_health -= 25;
+                check_death();
+            }
 
             if (other.tag == "boss_hitbox")
             {
@@ -163,7 +208,14 @@ public class Player_getshit : MonoBehaviour
                 player_current_health -= 25;
                 check_death();
             }
-
+            if (other.tag == "ghost_hit")
+            {
+                get_hit();
+                Debug.Log("Melee_Enemy_1 did melee damage");
+                hits_taken += 1;
+                player_current_health -= 10;
+                check_death();
+            }
 
             if (other.tag == "Melee_Enemy_touch")
             {

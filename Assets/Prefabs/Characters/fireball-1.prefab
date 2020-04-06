@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 4958741104550536301}
   - component: {fileID: 1991892364477888445}
   - component: {fileID: 4828713546529906289}
+  - component: {fileID: 6230114449027802652}
   m_Layer: 0
   m_Name: fireball-1
   m_TagString: Range_Enemy_1
@@ -56,6 +57,8 @@ MonoBehaviour:
   rb: {fileID: 1991892364477888445}
   closeDistance: 5
   enemy: {fileID: 0}
+  max_range: 0
+  facedir: {fileID: 6230114449027802652}
 --- !u!212 &4958741104550536302
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -161,3 +164,17 @@ CircleCollider2D:
   m_Offset: {x: -0.064068004, y: 0}
   serializedVersion: 2
   m_Radius: 0.07593201
+--- !u!114 &6230114449027802652
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4958741104550536299}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 213c1400196b17b4db8541b8309f6538, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 0}
+  dirNum: 0
