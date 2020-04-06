@@ -42,6 +42,7 @@ public class Boss_takes_damage : MonoBehaviour
         //take damage
         if (other.tag == "Player_Hitbox_special")
         {
+            FindObjectOfType<AudioManager>().Play("boss_gets_hit");
             anim2.SetTrigger("get_hit");
             Debug.Log("hit detected special");
             //StartCoroutine(Freeze(freeze_dur));
@@ -53,6 +54,7 @@ public class Boss_takes_damage : MonoBehaviour
         //take damage
         if (other.tag == "Player_Hitbox_regular")
         {
+            FindObjectOfType<AudioManager>().Play("boss_gets_hit");
             anim2.SetTrigger("get_hit");
             Debug.Log("hit detected regular");
             //StartCoroutine(Freeze(freeze_dur));
@@ -88,7 +90,7 @@ public class Boss_takes_damage : MonoBehaviour
 
     public void enemy_dies(float death_timer1)
     {
-
+        FindObjectOfType<AudioManager>().Play("boss_dies");
         hitbox.enabled = !hitbox.enabled;
         enemydead = true;
         cooldown = true;

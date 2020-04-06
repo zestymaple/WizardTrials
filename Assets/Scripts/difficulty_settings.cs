@@ -31,13 +31,13 @@ public class difficulty_settings : MonoBehaviour
                         health = 1000;
                         break;
                     case Enemies.Slime:
-                        health = 50;
+                        health = 100;
                         break;
                     case Enemies.Mage:
                         health = 100;
                         break;
                     case Enemies.Djinn:
-                        health = 50;
+                        health = 100;
                         break;
                 }                  
                 break;
@@ -46,19 +46,19 @@ public class difficulty_settings : MonoBehaviour
                 switch (i)
                 {
                     case Enemies.Skeleton:
-                        health = 150;
+                        health = 200;
                         break;
                     case Enemies.Boss:
                         health = 1500;
                         break;
                     case Enemies.Slime:
-                        health = 75;
+                        health = 200;
                         break;
                     case Enemies.Mage:
-                        health = 150;
+                        health = 200;
                         break;
                     case Enemies.Djinn:
-                        health = 75;
+                        health = 200;
                         break;
                 }
                 break;
@@ -67,19 +67,19 @@ public class difficulty_settings : MonoBehaviour
                 switch (i)
                 {
                     case Enemies.Skeleton:
-                        health = 200;
+                        health = 400;
                         break;
                     case Enemies.Boss:
                         health = 2000;
                         break;
                     case Enemies.Slime:
-                        health = 100;
+                        health = 400;
                         break;
                     case Enemies.Mage:
-                        health = 200;
+                        health = 400;
                         break;
                     case Enemies.Djinn:
-                        health = 100;
+                        health = 400;
                         break;
                 }
                 break;

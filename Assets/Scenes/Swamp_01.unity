@@ -4697,12 +4697,12 @@ PrefabInstance:
     - target: {fileID: 8718074220079331685, guid: 51ce93a7c584e2b43a3c0492792c9533,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 281.96957
+      value: 50.491005
       objectReference: {fileID: 0}
     - target: {fileID: 8718074220079331685, guid: 51ce93a7c584e2b43a3c0492792c9533,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 20.46906
+      value: 1.4490601
       objectReference: {fileID: 0}
     - target: {fileID: 8718074220079331685, guid: 51ce93a7c584e2b43a3c0492792c9533,
         type: 3}
@@ -4747,12 +4747,12 @@ PrefabInstance:
     - target: {fileID: 8718074221761342128, guid: 51ce93a7c584e2b43a3c0492792c9533,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 281.96957
+      value: 50.491005
       objectReference: {fileID: 0}
     - target: {fileID: 8718074221761342128, guid: 51ce93a7c584e2b43a3c0492792c9533,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 20.46906
+      value: 1.4490601
       objectReference: {fileID: 0}
     - target: {fileID: 8718074221761342135, guid: 51ce93a7c584e2b43a3c0492792c9533,
         type: 3}
@@ -8905,12 +8905,12 @@ PrefabInstance:
     - target: {fileID: 3939325475139054783, guid: eb1171622f29f4143b2a7ea590a66bc4,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 279
+      value: 47.32
       objectReference: {fileID: 0}
     - target: {fileID: 3939325475139054783, guid: eb1171622f29f4143b2a7ea590a66bc4,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 20.7
+      value: 1.68
       objectReference: {fileID: 0}
     - target: {fileID: 3939325475139054783, guid: eb1171622f29f4143b2a7ea590a66bc4,
         type: 3}
@@ -33384,7 +33384,7 @@ MonoBehaviour:
     loop: 0
     volumeVariance: 0
     pitchVariance: 0
-  - name: special_cas3
+  - name: special_cast3
     clip: {fileID: 8300000, guid: fe0b1f9aeb45b41b089175aeeabd5d95, type: 3}
     volume: 0.405
     pitch: 0.94
@@ -33410,6 +33410,166 @@ MonoBehaviour:
     pitchVariance: 0
   - name: player_die_scream
     clip: {fileID: 8300000, guid: 08a87f666ebd0d34192d112244071d32, type: 3}
+    volume: 0.405
+    pitch: 1
+    source: {fileID: 0}
+    loop: 0
+    volumeVariance: 0
+    pitchVariance: 0
+  - name: start_jump
+    clip: {fileID: 8300000, guid: 6fd78f323d643d74db415db6230d030f, type: 3}
+    volume: 0.405
+    pitch: 0.9
+    source: {fileID: 0}
+    loop: 0
+    volumeVariance: 0
+    pitchVariance: 0
+  - name: end_jump
+    clip: {fileID: 8300000, guid: f3ceab1b2e582b140bcd5735f64301f7, type: 3}
+    volume: 0.405
+    pitch: 0.37
+    source: {fileID: 0}
+    loop: 0
+    volumeVariance: 0
+    pitchVariance: 0
+  - name: dash_start
+    clip: {fileID: 8300000, guid: ce12440057e067846a15a1d10e043b33, type: 3}
+    volume: 0.405
+    pitch: 0.9
+    source: {fileID: 0}
+    loop: 0
+    volumeVariance: 0
+    pitchVariance: 0
+  - name: shot_hits
+    clip: {fileID: 8300000, guid: 7957e11be63d83b42bbc21287d4293d1, type: 3}
+    volume: 0.405
+    pitch: 1.85
+    source: {fileID: 0}
+    loop: 0
+    volumeVariance: 0
+    pitchVariance: 0
+  - name: oom
+    clip: {fileID: 8300000, guid: 2b3813a9e9c99e2489dc16b6af158495, type: 3}
+    volume: 0.405
+    pitch: 1.85
+    source: {fileID: 0}
+    loop: 0
+    volumeVariance: 0
+    pitchVariance: 0
+  - name: get_potion_health_big
+    clip: {fileID: 8300000, guid: 7bd6b897eb5ca4b7d88a205c4a51640c, type: 3}
+    volume: 0.405
+    pitch: 1.41
+    source: {fileID: 0}
+    loop: 0
+    volumeVariance: 0
+    pitchVariance: 0
+  - name: get_potion_mana_big
+    clip: {fileID: 8300000, guid: 7bd6b897eb5ca4b7d88a205c4a51640c, type: 3}
+    volume: 0.405
+    pitch: 1.85
+    source: {fileID: 0}
+    loop: 0
+    volumeVariance: 0
+    pitchVariance: 0
+  - name: get_potion_mana_small
+    clip: {fileID: 8300000, guid: 7bd6b897eb5ca4b7d88a205c4a51640c, type: 3}
+    volume: 0.405
+    pitch: 1.65
+    source: {fileID: 0}
+    loop: 0
+    volumeVariance: 0
+    pitchVariance: 0
+  - name: get_potion_health_small
+    clip: {fileID: 8300000, guid: 7bd6b897eb5ca4b7d88a205c4a51640c, type: 3}
+    volume: 0.405
+    pitch: 1.25
+    source: {fileID: 0}
+    loop: 0
+    volumeVariance: 0
+    pitchVariance: 0
+  - name: checkpoint
+    clip: {fileID: 8300000, guid: 2667a0a008b044e218b63df62e2be749, type: 3}
+    volume: 0.405
+    pitch: 1
+    source: {fileID: 0}
+    loop: 0
+    volumeVariance: 0
+    pitchVariance: 0
+  - name: mage_gets_hit
+    clip: {fileID: 8300000, guid: 47ebe87eabfdf7446a974b17510d77d6, type: 3}
+    volume: 0.405
+    pitch: 1
+    source: {fileID: 0}
+    loop: 0
+    volumeVariance: 0
+    pitchVariance: 0
+  - name: Slime_gets_hit
+    clip: {fileID: 8300000, guid: f2d39c2a756275a48876f75ba0cb1198, type: 3}
+    volume: 0.405
+    pitch: 1
+    source: {fileID: 0}
+    loop: 0
+    volumeVariance: 0
+    pitchVariance: 0
+  - name: djinn_gets_hit
+    clip: {fileID: 8300000, guid: 21dd90ad269f2d147abde120d6054745, type: 3}
+    volume: 0.405
+    pitch: 1
+    source: {fileID: 0}
+    loop: 0
+    volumeVariance: 0
+    pitchVariance: 0
+  - name: boss_gets_hit
+    clip: {fileID: 8300000, guid: c604398b0ac924f4ebdc2668810e5f54, type: 3}
+    volume: 0.405
+    pitch: 1
+    source: {fileID: 0}
+    loop: 0
+    volumeVariance: 0
+    pitchVariance: 0
+  - name: skelly_gets_hit
+    clip: {fileID: 8300000, guid: dbd61578c95e64c468c561911d58e60e, type: 3}
+    volume: 0.405
+    pitch: 1
+    source: {fileID: 0}
+    loop: 0
+    volumeVariance: 0
+    pitchVariance: 0
+  - name: skelly_dies
+    clip: {fileID: 8300000, guid: 4e82c583e067c034a8a1d16f3c5310a6, type: 3}
+    volume: 0.405
+    pitch: 1
+    source: {fileID: 0}
+    loop: 0
+    volumeVariance: 0
+    pitchVariance: 0
+  - name: mage_dies
+    clip: {fileID: 8300000, guid: 4e82c583e067c034a8a1d16f3c5310a6, type: 3}
+    volume: 0.405
+    pitch: 1
+    source: {fileID: 0}
+    loop: 0
+    volumeVariance: 0
+    pitchVariance: 0
+  - name: slime_dies
+    clip: {fileID: 8300000, guid: 4e82c583e067c034a8a1d16f3c5310a6, type: 3}
+    volume: 0.405
+    pitch: 1
+    source: {fileID: 0}
+    loop: 0
+    volumeVariance: 0
+    pitchVariance: 0
+  - name: djinn_dies
+    clip: {fileID: 8300000, guid: 4e82c583e067c034a8a1d16f3c5310a6, type: 3}
+    volume: 0.405
+    pitch: 1
+    source: {fileID: 0}
+    loop: 0
+    volumeVariance: 0
+    pitchVariance: 0
+  - name: boss_dies
+    clip: {fileID: 8300000, guid: 8971ccd488928654ea307d3d0b85c7d4, type: 3}
     volume: 0.405
     pitch: 1
     source: {fileID: 0}

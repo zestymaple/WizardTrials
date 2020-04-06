@@ -42,6 +42,7 @@ public class hero_projectile : MonoBehaviour
         {
             if (gameObject)
             {
+                FindObjectOfType<AudioManager>().Play("shot_hits");
                 Destroy(gameObject);
             }
 

@@ -30,6 +30,7 @@ public class Hero_Controls : MonoBehaviour
     public bool special_active;
     public bool left_trigger;
     public bool right_trigger;
+    public bool landed;
 
 
     // Start is called before the first frame update
@@ -176,6 +177,7 @@ public class Hero_Controls : MonoBehaviour
                 //ascending
                 if (player_Rigidbody2D.velocity.y > 0)
                 {
+
                     anim.SetBool("descending", false);
                     anim.SetBool("ascending", true);
                 }
@@ -189,6 +191,7 @@ public class Hero_Controls : MonoBehaviour
 
                 if (player_Rigidbody2D.velocity.y == 0)
                 {
+
                     anim.SetBool("ascending", false);
                     anim.SetBool("descending", false);
                     anim.SetBool("is_idle", false);
@@ -242,6 +245,7 @@ public class Hero_Controls : MonoBehaviour
 
                 if (player_Rigidbody2D.velocity.y == 0)
                 {
+
                     anim.SetBool("ascending", false);
                     anim.SetBool("descending", false);
                     anim.SetBool("is_idle", false);

@@ -186,6 +186,7 @@ public class Hero_Controller : MonoBehaviour
     IEnumerator shoot(List<int> shots_fired, float time_to_wait)
     {
         yield return new WaitForSeconds(time_to_wait);
+
         if (hero_current_mana > 0)
         {
   
@@ -266,8 +267,9 @@ public class Hero_Controller : MonoBehaviour
     public void Jump(bool is_sprinting)
     {
 
-            anim.SetTrigger("jump_pressed");
-            if (wallclimbing == true)
+        anim.SetTrigger("jump_pressed");
+        FindObjectOfType<AudioManager>().Play("start_jump");
+        if (wallclimbing == true)
             {
                 if (is_sprinting == false)
                 {

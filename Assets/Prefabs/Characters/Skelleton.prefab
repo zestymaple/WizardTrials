@@ -427,10 +427,10 @@ MonoBehaviour:
   rb: {fileID: 7257529898811690324}
   enemy_max_hp: 100
   enemy_current_hp: 0
-  player_reg_dmg: 35
-  player_spc_dmg: 100
-  player_proj_dmg: 25
-  freeze_dur: 0.5
+  player_reg_dmg: 101
+  player_spc_dmg: 101
+  player_proj_dmg: 35
+  freeze_dur: 0.75
   anim2: {fileID: 6321191577380629056}
   cooldown: 0
   anim: {fileID: 0}

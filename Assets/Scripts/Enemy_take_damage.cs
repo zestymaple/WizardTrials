@@ -52,6 +52,7 @@ public class Enemy_take_damage : MonoBehaviour
         //take damage
         if (other.tag == "Player_Hitbox_special")
         {
+            FindObjectOfType<AudioManager>().Play("skelly_gets_hit");
             anim2.SetTrigger("get_hit");
             Debug.Log("hit detected special");
             StartCoroutine(Freeze(freeze_dur));
@@ -63,6 +64,7 @@ public class Enemy_take_damage : MonoBehaviour
         //take damage
         if (other.tag == "Player_Hitbox_regular")
         {
+            FindObjectOfType<AudioManager>().Play("skelly_gets_hit");
             anim2.SetTrigger("get_hit");
             Debug.Log("hit detected regular");
             StartCoroutine(Freeze(freeze_dur));
@@ -89,7 +91,7 @@ public class Enemy_take_damage : MonoBehaviour
     {
         if (enemy_current_hp <= 0)
         {
-
+            enemydead = true;
             patrol.enabled = !patrol.enabled;
             StartCoroutine(Freeze(freeze_dur));
             //disable collider
@@ -101,7 +103,7 @@ public class Enemy_take_damage : MonoBehaviour
 
     public void enemy_dies(float death_timer1)
     {
-
+        FindObjectOfType<AudioManager>().Play("skelly_dies");
         hitbox.enabled = !hitbox.enabled;
         enemydead = true;
         cooldown = true;

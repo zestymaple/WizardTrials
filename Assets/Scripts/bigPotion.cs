@@ -63,10 +63,12 @@ public class bigPotion : MonoBehaviour
 
             if (playerM.hero_current_mana + PotionValueM >= playerM.hero_max_mana)
             {
+                FindObjectOfType<AudioManager>().Play("get_potion_mana_big");
                 playerM.hero_current_mana = playerM.hero_max_mana;
             }
             else
             {
+                FindObjectOfType<AudioManager>().Play("get_potion_mana_big");
                 playerM.hero_current_mana += PotionValueM;
             }
         }
@@ -80,10 +82,12 @@ public class bigPotion : MonoBehaviour
 
             if (playerH.player_current_health + PotionValueH >= playerH.player_max_health)
             {
+                FindObjectOfType<AudioManager>().Play("get_potion_health_big");
                 playerH.player_current_health = playerH.player_max_health;
             }
             else
             {
+                FindObjectOfType<AudioManager>().Play("get_potion_health_big");
                 playerH.player_current_health += PotionValueH;
             }
         }

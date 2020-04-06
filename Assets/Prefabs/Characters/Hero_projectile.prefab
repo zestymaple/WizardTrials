@@ -149,7 +149,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6764829922385647595}
   - component: {fileID: 5703210774027120406}
-  m_Layer: 10
+  m_Layer: 8
   m_Name: HitBox
   m_TagString: Player_hitbox_projectile
   m_Icon: {fileID: 0}
