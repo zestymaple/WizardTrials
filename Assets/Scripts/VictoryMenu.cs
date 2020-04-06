@@ -20,6 +20,7 @@ public class VictoryMenu : MonoBehaviour
     private void OnEnable()
     {
         setDefaultFocus();
+        Pause();
     }
 
     private void setDefaultFocus()
