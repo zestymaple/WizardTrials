@@ -5,7 +5,7 @@ using UnityEngine;
 public class sorc_takes_damage : MonoBehaviour
 {
     public Rigidbody2D rb;
-    public int enemy_max_hp = 100;
+    public int enemy_max_hp;
     public int enemy_current_hp;
     public int player_reg_dmg;
     public int player_spc_dmg;
@@ -18,10 +18,11 @@ public class sorc_takes_damage : MonoBehaviour
     public CircleCollider2D hitbox;
     public Rangesorcerer rangesorc;
     public BoxCollider2D boxcol;
-
+    public difficulty_settings settings;
     // Start is called before the first frame update
     void Start()
     {
+        enemy_max_hp = settings.get_health(difficulty_settings.Enemies.Mage);
         enemy_current_hp = enemy_max_hp;
         anim = GetComponent<Animator>();
     }

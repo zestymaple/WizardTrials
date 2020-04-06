@@ -31,12 +31,14 @@ public class Hero_Controller : MonoBehaviour
     public List<int> shotpattern_1;
     public List<int> shotpattern_2;
     public List<int> shotpattern_3;
+    public bool is_attacking;
     
     public Slider staminaBar;
 
     // Start is called before the first frame update
     void Start()
     {
+        is_attacking = false;
         hero_current_mana = hero_max_mana;
         staminaBar.maxValue = hero_max_mana;
         
@@ -83,7 +85,7 @@ public class Hero_Controller : MonoBehaviour
             StartCoroutine(AttackDuration_ground());
         }
 
-        if (grounded == false && is_sprinting == false)
+        if (grounded == false)
         {
             StartCoroutine(AttackDuration_air());
         }
@@ -96,23 +98,30 @@ public class Hero_Controller : MonoBehaviour
 
     }
 
+
     IEnumerator AttackDuration_ground()
     {
-        anim.SetTrigger("attack");
-        Debug.Log("attack start");
-        attack_hitbox.SetActive(true);
-        yield return new WaitForSeconds(0.5f);
-        Debug.Log("attack ended");
-        attack_hitbox.SetActive(false);
+
+            anim.SetTrigger("attack");
+            Debug.Log("attack start");
+            attack_hitbox.SetActive(true);
+            anim.SetBool("is_attacking", true);
+            yield return new WaitForSeconds(0.75f);
+            anim.SetBool("is_attacking", false);
+            Debug.Log("attack ended");
+            attack_hitbox.SetActive(false);
+
     }
 
     IEnumerator AttackDuration_air()
     {
+        anim.SetBool("is_attacking", true);
         anim.SetTrigger("attack_air");
         Debug.Log("attack start");
         attack_hitbox.SetActive(true);
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.75f);
         Debug.Log("attack ended");
+        anim.SetBool("is_attacking", false);
         attack_hitbox.SetActive(false);
     }
 
@@ -123,7 +132,7 @@ public class Hero_Controller : MonoBehaviour
         attack_hitbox_special.SetActive(true);
         StartCoroutine(shoot(shotpattern_1, 0.15f));
         StartCoroutine(shoot(shotpattern_2, 0.30f));
-        StartCoroutine(shoot(shotpattern_3, 0.75f));
+        StartCoroutine(shoot(shotpattern_3, 0.45f));
         yield return new WaitForSeconds(1);
         Debug.Log("attack ended");
         attack_hitbox_special.SetActive(false);

@@ -5,7 +5,7 @@ using UnityEngine;
 public class zombie_take_damage : MonoBehaviour
 {
     public Rigidbody2D rb;
-    public int enemy_max_hp = 100;
+    public int enemy_max_hp;
     public int enemy_current_hp;
     public int player_reg_dmg;
     public int player_spc_dmg;
@@ -18,10 +18,13 @@ public class zombie_take_damage : MonoBehaviour
     public CircleCollider2D hitbox;
     public zombie_jump jumper;
     public BoxCollider2D boxcol;
+    public difficulty_settings settings;
 
     // Start is called before the first frame update
     void Start()
     {
+        enemy_max_hp = settings.get_health(difficulty_settings.Enemies.Slime);
+
         enemy_current_hp = enemy_max_hp;
         anim = GetComponent<Animator>();
     }
@@ -87,7 +90,6 @@ public class zombie_take_damage : MonoBehaviour
     {
         if (enemy_current_hp <= 0)
         {
-            rb.gravityScale = 0;
             jumper.enabled = !jumper.enabled;
             StartCoroutine(Freeze(freeze_dur));
             //disable collider
@@ -99,7 +101,6 @@ public class zombie_take_damage : MonoBehaviour
 
     public void enemy_dies(float death_timer1)
     {
-        rb.gravityScale = 0;
         hitbox.enabled = !hitbox.enabled;
         enemydead = true;
         cooldown = true;
@@ -113,6 +114,7 @@ public class zombie_take_damage : MonoBehaviour
     {
         rb.gravityScale = 0;
         cooldown = true;
+        Destroy(boxcol);
         Debug.Log("enemy should die");
         yield return new WaitForSeconds(death_timer2);
         Destroy(gameObject);

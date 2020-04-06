@@ -21,6 +21,7 @@ public class Boss_takes_damage : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+ 
         enemy_current_hp = enemy_max_hp;
         //anim = GetComponent<Animator>();
     }

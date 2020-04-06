@@ -30,15 +30,18 @@ public class Boss_move_forward : MonoBehaviour
     public float spawntimer2;
     public float spawntimer3;
     public bool spawn_not_started = true;
+    public Rigidbody2D rb;
     // Start is called before the first frame update
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player").transform;
+        rb = GetComponent<Rigidbody2D>();
         current_target = stop1;
         current_speed = speed;
         InvokeRepeating("spawn_minion1", 1f, spawntimer1);
         InvokeRepeating("spawn_minion2", 3f, spawntimer2);
         InvokeRepeating("spawn_minion3", 7f, spawntimer3);
+
     }
 
     // Update is called once per frame
@@ -87,6 +90,7 @@ public class Boss_move_forward : MonoBehaviour
         {
             if (boss_health_script.enemy_current_hp <= 75 || (Time.time - time_spent_at_spot) >= boss_timer)
             {
+                rb.constraints = RigidbodyConstraints2D.FreezeRotation;
                 stop_moving = false;
             }
         }
@@ -95,6 +99,7 @@ public class Boss_move_forward : MonoBehaviour
         {
             if (boss_health_script.enemy_current_hp <= 50 || (Time.time - time_spent_at_spot) >= boss_timer)
             {
+                rb.constraints = RigidbodyConstraints2D.FreezeRotation;
                 stop_moving = false;
             }
         }
@@ -103,6 +108,7 @@ public class Boss_move_forward : MonoBehaviour
         {
             if (boss_health_script.enemy_current_hp <= 25 || (Time.time - time_spent_at_spot) >= boss_timer)
             {
+                rb.constraints = RigidbodyConstraints2D.FreezeRotation;
                 stop_moving = false;
             }
         }
@@ -111,6 +117,7 @@ public class Boss_move_forward : MonoBehaviour
         {
             if ((Time.time - time_spent_at_spot) >= boss_timer)
             {
+                rb.constraints = RigidbodyConstraints2D.FreezeRotation;
                 stop_moving = false;
             }
         }
@@ -191,6 +198,7 @@ public class Boss_move_forward : MonoBehaviour
         {
             if (current_target == stop1)
             {
+                rb.constraints = RigidbodyConstraints2D.FreezeAll;
                 //stop moving
                 stop_moving = true;
                 //set next target
@@ -207,6 +215,7 @@ public class Boss_move_forward : MonoBehaviour
             //second stop
             if (current_target == stop2)
             {
+                rb.constraints = RigidbodyConstraints2D.FreezeAll;
                 //stop moving
                 stop_moving = true;
                 //set next target
@@ -223,6 +232,7 @@ public class Boss_move_forward : MonoBehaviour
             //third stop
             if (current_target == stop3)
             {
+                rb.constraints = RigidbodyConstraints2D.FreezeAll;
                 //stop moving
                 stop_moving = true;
                 //set next target
@@ -239,6 +249,7 @@ public class Boss_move_forward : MonoBehaviour
             //final stop
             if (current_target == stop4)
             {
+                rb.constraints = RigidbodyConstraints2D.FreezeAll;
                 //stop moving
                 stop_moving = true;
                 //set next target

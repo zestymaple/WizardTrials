@@ -56,23 +56,23 @@ public class Rangesorcerer : MonoBehaviour
 
 
 
-        if (Vector2.Distance(transform.position, player.position) < startMovingDistance)
+        if (Vector2.Distance(transform.position, player.position) <= startMovingDistance)
         {
 
-            transform.position = Vector2.MoveTowards(transform.position, player.position, 0 * Time.deltaTime);
+            //transform.position = Vector2.MoveTowards(transform.position, player.position, 0 * Time.deltaTime);
 
 
             if (Vector2.Distance(transform.position, player.position) > stoppingDistance)
             {
-                transform.position = Vector2.MoveTowards(transform.position, player.position, speed * Time.deltaTime);
+               // transform.position = Vector2.MoveTowards(transform.position, player.position, speed * Time.deltaTime);
             }
             else if (Vector2.Distance(transform.position, player.position) < stoppingDistance && Vector2.Distance(transform.position, player.position) > retreatDistance)
             {
-                transform.position = this.transform.position;
+               // transform.position = this.transform.position;
             }
             else if (Vector2.Distance(transform.position, player.position) < retreatDistance)
             {
-                transform.position = Vector2.MoveTowards(transform.position, player.position, 0 * Time.deltaTime);
+               // transform.position = Vector2.MoveTowards(transform.position, player.position, 0 * Time.deltaTime);
             }
 
             if (timeBtwShots <= 0)

@@ -81,8 +81,9 @@ public class SaveSystem : MonoBehaviour
         {
             var Start = new Vector3(-7f, 0.8f, 0f);
             var Test1 = new Vector3(28f, 0.8f, 0f);
+            var Boss = new Vector3(251f, 19f, 0f);
 
-            Vector3 newPlayerPosition = Test1;
+            Vector3 newPlayerPosition = Boss;
             Debug.Log($"Loading DEFAULT Player Position: {newPlayerPosition.x}:{newPlayerPosition.y}:{newPlayerPosition.z}");
             Player.position = newPlayerPosition;
         }

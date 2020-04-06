@@ -14,6 +14,7 @@ public class hero_projectile : MonoBehaviour
     {
         player = GameObject.FindWithTag("Player");
         transform.localScale = player.transform.localScale;
+        Invoke("kill", 2f);
 
 
         if (player.transform.localScale.x == -1)
@@ -37,9 +38,13 @@ public class hero_projectile : MonoBehaviour
     void OnTriggerEnter2D(Collider2D other)
     {
 
-        if (other.tag == "Ground" || other.tag == "enemy" || other.tag == "Melee_Enemy_touch" || other.tag =="Range_Enemy_touch" || other.tag == "vines" || other.tag == "opaque" || other.tag == "non-climb")
+        if (other.tag == "Ground" || other.tag =="Untagged" || other.tag == "enemy" || other.tag == "Melee_Enemy_touch" || other.tag =="Range_Enemy_touch" || other.tag == "vines" || other.tag == "opaque" || other.tag == "non-climb")
         {
-            Destroy(gameObject);
+            if (gameObject)
+            {
+                Destroy(gameObject);
+            }
+
         }
 
 
@@ -50,13 +55,20 @@ public class hero_projectile : MonoBehaviour
     {
         if (Vector2.Distance(transform.position, player.transform.position) >= max_range)
         {
-            kill();
+            if (gameObject)
+            {
+                kill();
+            }
         }
     }
 
 
     void kill()
     {
-        Destroy(gameObject);
+        if (gameObject)
+        {
+            Destroy(gameObject);
+        }
+
     }
 }

@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5375912230769131639}
   - component: {fileID: 8492526260218175384}
   - component: {fileID: 8685562464626269803}
-  m_Layer: 8
+  m_Layer: 10
   m_Name: hitbox
   m_TagString: boss_hitbox
   m_Icon: {fileID: 0}
@@ -46,9 +46,9 @@ CircleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.0159235, y: 0.028271198}
+  m_Offset: {x: 0.03904958, y: 0.019491166}
   serializedVersion: 2
-  m_Radius: 0.17476606
+  m_Radius: 0.18845896
 --- !u!95 &8492526260218175384
 Animator:
   serializedVersion: 3
@@ -133,7 +133,8 @@ GameObject:
   - component: {fileID: 5375912231070650696}
   - component: {fileID: 5375912231070650699}
   - component: {fileID: 1279882787321642098}
-  m_Layer: 8
+  - component: {fileID: 2919025518624871063}
+  m_Layer: 10
   m_Name: Slime_zombie
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -192,7 +193,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 4
   m_Sprite: {fileID: 21300000, guid: bacb697df678f4a33b3a91a62402c0bc, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -239,7 +240,7 @@ Rigidbody2D:
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: f3afeca79a984ff46a62e1f45f082701, type: 2}
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 1
@@ -257,7 +258,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.022323608, y: -0.16501407}
+  m_Offset: {x: 0.022323608, y: -0.15268898}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -268,7 +269,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.15646362, y: 0.11997184}
+  m_Size: {x: 0.15646362, y: 0.095321655}
   m_EdgeRadius: 0
 --- !u!114 &5375912231070650696
 MonoBehaviour:
@@ -288,7 +289,7 @@ MonoBehaviour:
   testbool2: 0
   playdir: {fileID: 0}
   jumpspeed: 2
-  movespeed: 0.75
+  movespeed: 1
   movetimer: 2
   cooldown: 0
   freezetime: 0
@@ -332,4 +333,18 @@ MonoBehaviour:
   enemydead: 0
   hitbox: {fileID: 5375912230769131639}
   jumper: {fileID: 5375912231070650696}
-  boxcol: {fileID: 0}
+  boxcol: {fileID: 5375912231070650693}
+  settings: {fileID: 2919025518624871063}
+--- !u!114 &2919025518624871063
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5375912231070650690}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8475122ace54a1141baebe95adcc1ef9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  diff: 0

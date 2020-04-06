@@ -12,33 +12,41 @@ public class ghost_move_to_point : MonoBehaviour
     public int next_point;
     public float speed;
     public bool flip;
+    public bool stationary = true;
 
     // Start is called before the first frame update
     void Start()
     {
         mytransform = GetComponent<Transform>();
-        next_point = 1;
-        move_point1(point1);
+
+        if (stationary == true)
+        {
+            move_point1(point1);
+            next_point = 1;
+        }
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        check_move(point1, point2);
-
-        //call move1 repeatatly
-        if (next_point == 1)
+        if (stationary == true)
         {
-            move_point1(point1);
+            check_move(point1, point2);
+
+            //call move1 repeatatly
+            if (next_point == 1)
+            {
+                move_point1(point1);
+            }
+
+            //call move2 repeatatly
+            if (next_point == 2)
+            {
+                move_point1(point2);
+            }
+
         }
-
-        //call move2 repeatatly
-        if (next_point == 2)
-        {
-            move_point1(point2);
-        }
-
-
     }
 
     public void check_move(Transform first_point, Transform second_point)

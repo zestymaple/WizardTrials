@@ -15,6 +15,8 @@ public class Projectile : MonoBehaviour
     public float closeDistance = 5;
     public Transform enemy;
     public float max_range;
+    public left_right facedir;
+    public int flip_dir;
 
     private void Start()
     {
@@ -24,15 +26,31 @@ public class Projectile : MonoBehaviour
         // rb.velocity = target * speed;
         //this.sprite.flipX = player.transform.position.x > this.transform.position.x;
 
-
+        Invoke("flip", 0.05f);
+        Invoke("kill", 6f);
         enemy = GameObject.FindGameObjectWithTag("enemy").transform;
-
-        transform.localScale = enemy.localScale;
-
 
         rb.velocity = (player.position - transform.position).normalized * speed;
 
     }
+
+    void flip()
+    {
+        if (facedir.dirNum == 1)
+        {
+            Vector3 flip_dir = transform.localScale;
+            flip_dir.x = -1;
+            transform.localScale = flip_dir;
+        }
+
+        if (facedir.dirNum == -1)
+        {
+            Vector3 flip_dir = transform.localScale;
+            flip_dir.x = 1;
+            transform.localScale = flip_dir;
+        }
+    }
+
 
     private void Update()
     {
@@ -67,7 +85,14 @@ public class Projectile : MonoBehaviour
 
     }
 
+    void kill()
+    {
+        if (gameObject)
+        {
+            Destroy(gameObject);
+        }
 
+    }
 
     //IEnumerator DestroyProjectile()
     void DestroyProjectile()
