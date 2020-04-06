@@ -1,10 +1,33 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class MainMenu : MonoBehaviour
 {
+    private void OnApplicationFocus(bool hasFocus)
+    {
+        if (hasFocus)
+        {
+            setDefaultFocus();
+        }
+    }
+
+    private void OnEnable()
+    {
+        setDefaultFocus();
+    }
+
+    private void setDefaultFocus()
+    {
+        Button btn = GameObject.Find("OptionsButton").GetComponent<Button>();
+        EventSystem es = GameObject.Find("EventSystem").GetComponent<EventSystem>();
+        es.SetSelectedGameObject(btn.gameObject);
+    }
+
     public void PlayGame()
     {
         ClearSave();
@@ -19,7 +42,7 @@ public class MainMenu : MonoBehaviour
         PlayerPrefs.DeleteKey("player.location.z");
         // Player Stats
     }
-    
+
     public void QuitGame()
     {
         Debug.Log("QUIT");

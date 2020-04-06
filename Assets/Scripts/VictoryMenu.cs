@@ -1,16 +1,13 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
-using System.Data.SqlTypes;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class DeathMenu : MonoBehaviour
+public class VictoryMenu : MonoBehaviour
 {
     public static bool GameIsPaused = false;
-    public GameObject deathMenuUI;
 
     private void OnApplicationFocus(bool hasFocus)
     {
@@ -27,21 +24,19 @@ public class DeathMenu : MonoBehaviour
 
     private void setDefaultFocus()
     {
-        Button btn = GameObject.Find("LoadSaveButton").GetComponent<Button>();
+        Button btn = GameObject.Find("MenuButton").GetComponent<Button>();
         EventSystem es = GameObject.Find("EventSystem").GetComponent<EventSystem>();
         es.SetSelectedGameObject(btn.gameObject);
     }
 
     public void Pause()
     {
-        deathMenuUI.SetActive(true);
         Time.timeScale = 0f;
         GameIsPaused = true;
     }
 
     public void Resume()
     {
-        deathMenuUI.SetActive(false);
         Time.timeScale = 1f;
         GameIsPaused = false;
     }

@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class OptionsMenu : MonoBehaviour
@@ -15,6 +16,26 @@ public class OptionsMenu : MonoBehaviour
 
     public TMP_Text EffectsVolumeLabel;
     public TMP_Text MusicVolumeLabel;
+
+    private void OnApplicationFocus(bool hasFocus)
+    {
+        if (hasFocus)
+        {
+            setDefaultFocus();
+        }
+    }
+
+    private void OnEnable()
+    {
+        setDefaultFocus();
+    }
+
+    private void setDefaultFocus()
+    {
+        Button btn = GameObject.Find("BackButton").GetComponent<Button>();
+        EventSystem es = GameObject.Find("EventSystem").GetComponent<EventSystem>();
+        es.SetSelectedGameObject(btn.gameObject);
+    }
 
     void Start()
     {
@@ -45,6 +66,10 @@ public class OptionsMenu : MonoBehaviour
         if (PlayerPrefs.HasKey("game.difficulty"))
         {
             gameDifficultyDropdown.value = PlayerPrefs.GetInt("game.difficulty");
+        }
+        else
+        {
+            gameDifficultyDropdown.value = 0;
         }
     }
 
