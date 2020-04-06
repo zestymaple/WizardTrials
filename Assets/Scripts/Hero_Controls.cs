@@ -28,6 +28,9 @@ public class Hero_Controls : MonoBehaviour
     public SpriteRenderer playersprite;
     public bool playerdead;
     public bool special_active;
+    public bool left_trigger;
+    public bool right_trigger;
+
 
     // Start is called before the first frame update
     void Start()
@@ -81,18 +84,57 @@ public class Hero_Controls : MonoBehaviour
         {
 
             readInput();
-            //is_sprinting = false;
+            
+            if (Input.GetAxis("sprinting") == 1)
+            {
+                right_trigger = true;
+            }
 
+            if (Input.GetAxis("sprinting") != 1)
+            {
+                right_trigger = false;
+            }
 
+            if (Input.GetAxis("special_active") == 1)
+            {
+                left_trigger = true;
+            }
 
+            if (Input.GetAxis("special_active") != 1)
+            {
+                left_trigger = false;
+            }
+
+            //turn on sprint joystick
+            if (right_trigger == true)
+            {
+                anim.SetBool("is_walk", false);
+                anim.SetBool("is_sprint", true);
+                is_sprinting = true;
+            }
+            if (right_trigger == false)
+            {
+                anim.SetBool("is_sprint", false);
+                is_sprinting = false;
+            }
+
+            //turn on special joystick
+            if (left_trigger == true)
+            {
+                special_active = true;
+            }
+            if (left_trigger == false)
+            {
+                special_active = false;
+            }
+
+            //turn on sprint
             if (Input.GetKey(KeyCode.LeftShift))
             {
                 anim.SetBool("is_walk", false);
                 anim.SetBool("is_sprint", true);
                 is_sprinting = true;
             }
-
-
             if (Input.GetKeyUp(KeyCode.LeftShift))
             {
                 anim.SetBool("is_sprint", false);
@@ -100,61 +142,28 @@ public class Hero_Controls : MonoBehaviour
             }
 
             //turn on special
-            if (Input.GetAxisRaw("sprinting") == 1)
-            {
-                anim.SetBool("is_walk", false);
-                anim.SetBool("is_sprint", true);
-                is_sprinting = true;
-            }
-            else if (Input.GetAxisRaw("sprinting") < 1)
-            {
-                    anim.SetBool("is_sprint", false);
-                    is_sprinting = false;
-            }
-
-
-            //turn on special
             if (Input.GetKey(KeyCode.Mouse1))
             {
-                anim.SetBool("is_walk", false);
-                anim.SetBool("is_sprint", true);
                 special_active = true;
             }
-
-
             if (Input.GetKeyUp(KeyCode.Mouse1))
             {
-                anim.SetBool("is_sprint", false);
                 special_active = false;
-            }
-
-            //turn on special
-            if (Input.GetAxisRaw("special_active") == 1)
-            {
-                special_active = true;
-            }
-            else if (Input.GetAxisRaw("special_active") < 1)
-            {
-                    special_active = false;
             }
 
 
             //Call Jump
-            if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.Joystick1Button2))
+            if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.Joystick1Button0))
             {
                 anim.SetTrigger("jump_pressed");
                 controller.Jump(is_sprinting);
             }
 
             //call attack
-            if (Input.GetKeyDown(KeyCode.Mouse0) || Input.GetKeyDown(KeyCode.Joystick1Button0))
+            if (Input.GetKeyDown(KeyCode.Mouse0) || Input.GetKeyDown(KeyCode.Joystick1Button2))
             {
-
                 //anim.Play("normal_attack");
-
                 controller.attack(is_sprinting, special_active);
-
-
             }
 
             //Moving Right STATE
@@ -308,9 +317,7 @@ public class Hero_Controls : MonoBehaviour
 
         //ENTER RIGHT STATE
         if (     (Input.GetKey(KeyCode.D) || Input.GetAxis("Horizontal") == 1)      &&    !( (Input.GetKey(KeyCode.A)))   )
-        {
-
-        
+        {    
             if (current_state == State.left)
             {
                 stateHandler(right_transition);

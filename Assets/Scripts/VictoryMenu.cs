@@ -44,6 +44,8 @@ public class VictoryMenu : MonoBehaviour
 
     public void LoadMenu()
     {
+
+        gameObject.SetActive(false);
         SceneManager.LoadScene(0);
         Resume();
     }
