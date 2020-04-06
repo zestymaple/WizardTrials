@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.00.00">
+	<object class="AudioFile" id="{03325206-e5b0-4968-90fd-4fb05bd6bd83}">
+		<property name="assetPath">
+			<value>Forest hunting-combat lvl 3.wav</value>
+		</property>
+		<property name="isStreaming">
+			<value>true</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>44.0999985</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>69.354172335600907</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{e496f60e-48e8-4273-802f-215f0e8ade33}</destination>
+		</relationship>
+	</object>
+</objects>

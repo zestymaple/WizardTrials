@@ -50,6 +50,7 @@ public class Hero_Controls : MonoBehaviour
 
     public void player_dies(float death_timer1)
     {
+        FindObjectOfType<AudioManager>().Play("player_die_scream");
         playerdead = true;
         playersprite.sortingOrder = 5;
         anim.SetBool("diebool", true);
@@ -155,7 +156,6 @@ public class Hero_Controls : MonoBehaviour
             //Call Jump
             if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.Joystick1Button0))
             {
-                anim.SetTrigger("jump_pressed");
                 controller.Jump(is_sprinting);
             }
 

@@ -38,7 +38,7 @@ public class hero_projectile : MonoBehaviour
     void OnTriggerEnter2D(Collider2D other)
     {
 
-        if (other.tag == "Ground" || other.tag =="Untagged" || other.tag == "enemy" || other.tag == "Melee_Enemy_touch" || other.tag =="Range_Enemy_touch" || other.tag == "vines" || other.tag == "opaque" || other.tag == "non-climb")
+        if (other.tag == "Ground"|| other.tag == "boss_hitbox" || other.tag =="Untagged" || other.tag == "enemy" || other.tag == "Melee_Enemy_touch" || other.tag =="Range_Enemy_touch" || other.tag == "vines" || other.tag == "opaque" || other.tag == "non-climb")
         {
             if (gameObject)
             {

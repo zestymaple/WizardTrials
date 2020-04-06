@@ -118,7 +118,7 @@ GameObject:
   - component: {fileID: 5822762572946241580}
   m_Layer: 10
   m_Name: Djinn
-  m_TagString: ghost_hit
+  m_TagString: enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -312,7 +312,7 @@ GameObject:
   - component: {fileID: 7255045278611420079}
   m_Layer: 8
   m_Name: hitbox
-  m_TagString: Melee_Enemy_touch
+  m_TagString: ghost_hit
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

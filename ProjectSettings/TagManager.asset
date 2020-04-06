@@ -30,6 +30,7 @@ TagManager:
   - ghost_hit
   - Djinn_hit
   - skelly_touch
+  - boss_music
   layers:
   - Default
   - TransparentFX

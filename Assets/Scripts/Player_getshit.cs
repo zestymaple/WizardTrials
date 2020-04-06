@@ -181,8 +181,15 @@ public class Player_getshit : MonoBehaviour
                 check_death();
             }
 
+            if (other.tag == "boss_music")
+            {
+                FindObjectOfType<AudioManager>().StopPlaying("Mountain_theme2");
+                FindObjectOfType<AudioManager>().Play("Boss_theme");
+            }
+
             if (other.tag =="skelly_touch")
             {
+                FindObjectOfType<AudioManager>().Play("female_scream_med");
                 skelly = true;
                 get_hit_slow();
                 Debug.Log("skelly touch");
@@ -193,6 +200,7 @@ public class Player_getshit : MonoBehaviour
 
             if (other.tag == "boss_hitbox")
             {
+                FindObjectOfType<AudioManager>().Play("female_scream_med");
                 get_hitboss();
                 Debug.Log("Melee_Enemy_1 did melee damage");
                 hits_taken += 1;
@@ -202,6 +210,7 @@ public class Player_getshit : MonoBehaviour
 
             if (other.tag == "Melee_Enemy_1")
             {
+                FindObjectOfType<AudioManager>().Play("female_scream_med");
                 get_hit();
                 Debug.Log("Melee_Enemy_1 did melee damage");
                 hits_taken += 1;
@@ -210,6 +219,7 @@ public class Player_getshit : MonoBehaviour
             }
             if (other.tag == "ghost_hit")
             {
+                FindObjectOfType<AudioManager>().Play("female_scream_med");
                 get_hit();
                 Debug.Log("Melee_Enemy_1 did melee damage");
                 hits_taken += 1;
@@ -219,6 +229,7 @@ public class Player_getshit : MonoBehaviour
 
             if (other.tag == "Melee_Enemy_touch")
             {
+                FindObjectOfType<AudioManager>().Play("female_scream_med");
                 get_hit();
                 Debug.Log("Melee_Enemy_1 touched player");
                 hits_taken += 1;
@@ -229,6 +240,7 @@ public class Player_getshit : MonoBehaviour
 
             if (other.tag == "Range_Enemy_1")
             {
+                FindObjectOfType<AudioManager>().Play("female_scream_med");
                 get_hit();
                 Debug.Log("Range_enemy_1 projectile hit");
                 hits_taken += 1;
@@ -238,6 +250,7 @@ public class Player_getshit : MonoBehaviour
 
             if (other.tag == "Range_Enemy_touch")
             {
+                FindObjectOfType<AudioManager>().Play("female_scream_med");
                 get_hit();
                 Debug.Log("Range_enemy_1 touched player");
                 hits_taken += 1;

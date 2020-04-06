@@ -18,6 +18,7 @@ public class Hero_Controller : MonoBehaviour
     public float sprint_speed = 2;
     public GameObject attack_hitbox;
     public GameObject attack_hitbox_special;
+    public GameObject aerial_hitbox;
     public Animator anim;
     public BoxCollider2D player_hitbox;
     public Transform firepoint_1;
@@ -32,7 +33,11 @@ public class Hero_Controller : MonoBehaviour
     public List<int> shotpattern_2;
     public List<int> shotpattern_3;
     public bool is_attacking;
-    
+    public bool cooldown;
+    public bool specialcooldown;
+    public bool aerialcooldown;
+
+
     public Slider staminaBar;
 
     // Start is called before the first frame update
@@ -97,45 +102,85 @@ public class Hero_Controller : MonoBehaviour
         }
 
     }
+    IEnumerator start_cooldown(int cdtype, float time)
+    {
+        if (cdtype == 1)
+        {
+            cooldown = true;
+        }
+        if (cdtype == 2)
+        {
+            specialcooldown = true;
+        }
+        if (cdtype == 3)
+        {
+            aerialcooldown = true;
+        }
 
+        yield return new WaitForSeconds(time);
+        if (cdtype == 1)
+        {
+            cooldown = false;
+        }
+        if (cdtype == 2)
+        {
+            specialcooldown = false;
+        }
+        if (cdtype == 3)
+        {
+            aerialcooldown = false;
+        }
+    }
 
     IEnumerator AttackDuration_ground()
     {
-
+        if (cooldown == false)
+        {
+            FindObjectOfType<AudioManager>().Play("Sword1");
             anim.SetTrigger("attack");
             Debug.Log("attack start");
             attack_hitbox.SetActive(true);
             anim.SetBool("is_attacking", true);
+            StartCoroutine(start_cooldown(1, 0.75f));
             yield return new WaitForSeconds(0.75f);
             anim.SetBool("is_attacking", false);
             Debug.Log("attack ended");
             attack_hitbox.SetActive(false);
-
+        }
     }
 
     IEnumerator AttackDuration_air()
     {
-        anim.SetBool("is_attacking", true);
-        anim.SetTrigger("attack_air");
-        Debug.Log("attack start");
-        attack_hitbox.SetActive(true);
-        yield return new WaitForSeconds(0.75f);
-        Debug.Log("attack ended");
-        anim.SetBool("is_attacking", false);
-        attack_hitbox.SetActive(false);
+        if (aerialcooldown == false)
+        {
+            FindObjectOfType<AudioManager>().Play("Sword2");
+            anim.SetBool("is_attacking", true);
+            anim.SetTrigger("attack_air");
+            Debug.Log("attack start");
+            aerial_hitbox.SetActive(true);
+            StartCoroutine(start_cooldown(3, 0.75f));
+            yield return new WaitForSeconds(0.75f);
+            Debug.Log("attack ended");
+            anim.SetBool("is_attacking", false);
+            aerial_hitbox.SetActive(false);
+        }
     }
 
     IEnumerator AttackDuration_special()
     {
-        anim.SetTrigger("attack_special");
-        Debug.Log("attack start");
-        attack_hitbox_special.SetActive(true);
-        StartCoroutine(shoot(shotpattern_1, 0.15f));
-        StartCoroutine(shoot(shotpattern_2, 0.30f));
-        StartCoroutine(shoot(shotpattern_3, 0.45f));
-        yield return new WaitForSeconds(1);
-        Debug.Log("attack ended");
-        attack_hitbox_special.SetActive(false);
+        if (specialcooldown == false)
+        {
+            anim.SetTrigger("attack_special");
+            Debug.Log("attack start");
+            attack_hitbox_special.SetActive(true);
+            StartCoroutine(shoot(shotpattern_1, 0.15f));
+            StartCoroutine(shoot(shotpattern_2, 0.30f));
+            StartCoroutine(shoot(shotpattern_3, 0.45f));
+            StartCoroutine(start_cooldown(2, 1f));
+            yield return new WaitForSeconds(1);
+            Debug.Log("attack ended");
+            attack_hitbox_special.SetActive(false);
+        }
     }
 
     IEnumerator shoot(List<int> shots_fired, float time_to_wait)
@@ -143,23 +188,27 @@ public class Hero_Controller : MonoBehaviour
         yield return new WaitForSeconds(time_to_wait);
         if (hero_current_mana > 0)
         {
+  
             foreach (int element in shots_fired)
             {
                 Debug.Log(element);
                 if (element == 1)
                 {
+                    FindObjectOfType<AudioManager>().Play("special_cast1");
                     Instantiate(hero_projectile, firepoint_1.position, firepoint_1.rotation);
                     hero_current_mana--;
                 }
 
                 if (element == 2)
                 {
+                    FindObjectOfType<AudioManager>().Play("special_cast2");
                     Instantiate(hero_projectile, firepoint_2.position, firepoint_2.rotation);
                     hero_current_mana--;
                 }
 
                 if (element == 3)
                 {
+                    FindObjectOfType<AudioManager>().Play("special_cast3");
                     Instantiate(hero_projectile, firepoint_3.position, firepoint_3.rotation);
                     hero_current_mana--;
                 }
@@ -217,94 +266,95 @@ public class Hero_Controller : MonoBehaviour
     public void Jump(bool is_sprinting)
     {
 
-        if (wallclimbing == true)
-        {
-            if (is_sprinting == false)
+            anim.SetTrigger("jump_pressed");
+            if (wallclimbing == true)
             {
+                if (is_sprinting == false)
+                {
 
-                grounded = false;
+                    grounded = false;
 
-                float x = player_Rigidbody2D.velocity.x;
-                float x2 = Mathf.Abs(x);
+                    float x = player_Rigidbody2D.velocity.x;
+                    float x2 = Mathf.Abs(x);
 
-                float x3 = x2 * jumpcoe;
-                float x4 = x * jumpcoe;
+                    float x3 = x2 * jumpcoe;
+                    float x4 = x * jumpcoe;
 
-                float calc_jump_speed_y = jump_speed + x3;
-                float calc_jump_speed_x = x + x4;
-
-
-                player_Rigidbody2D.velocity = new Vector2(calc_jump_speed_x *2, calc_jump_speed_y * 2);
-                return;
-            }
-            if (is_sprinting == true)
-            {
-                grounded = false;
-
-                float x = player_Rigidbody2D.velocity.x;
-                float x2 = Mathf.Abs(x);
-
-                float x3 = x2 * (jumpcoe * 1.25f);
-                float x4 = x * (jumpcoe * 1.25f);
-
-                float calc_jump_speed_y = jump_speed + x3;
-                float calc_jump_speed_x = x + x4;
-
-                player_Rigidbody2D.velocity = new Vector2(calc_jump_speed_x *2, calc_jump_speed_y * 2);
-                return;
-            }
-
-        }
+                    float calc_jump_speed_y = jump_speed + x3;
+                    float calc_jump_speed_x = x + x4;
 
 
+                    player_Rigidbody2D.velocity = new Vector2(calc_jump_speed_x * 2, calc_jump_speed_y * 2);
+                    return;
+                }
+                if (is_sprinting == true)
+                {
+                    grounded = false;
 
+                    float x = player_Rigidbody2D.velocity.x;
+                    float x2 = Mathf.Abs(x);
 
+                    float x3 = x2 * (jumpcoe * 1.25f);
+                    float x4 = x * (jumpcoe * 1.25f);
 
+                    float calc_jump_speed_y = jump_speed + x3;
+                    float calc_jump_speed_x = x + x4;
 
-        if (grounded == true)
-        {
+                    player_Rigidbody2D.velocity = new Vector2(calc_jump_speed_x * 2, calc_jump_speed_y * 2);
+                    return;
+                }
 
-            if (is_sprinting == false)
-            {
-
-                grounded = false;
-
-                float x = player_Rigidbody2D.velocity.x;
-                float x2 = Mathf.Abs(x);
-
-                float x3 = x2 * jumpcoe;
-                float x4 = x * jumpcoe;
-
-                float calc_jump_speed_y = jump_speed + x3;
-                float calc_jump_speed_x = x + x4;
-
-
-                player_Rigidbody2D.velocity = new Vector2(calc_jump_speed_x, calc_jump_speed_y);
-                return;
-            }
-
-            if (is_sprinting == true)
-            {
-                grounded = false;
-
-                float x = player_Rigidbody2D.velocity.x;
-                float x2 = Mathf.Abs(x);
-
-                float x3 = x2 * (jumpcoe *1.25f);
-                float x4 = x * (jumpcoe *1.25f);
-
-                float calc_jump_speed_y = jump_speed + x3;
-                float calc_jump_speed_x = x + x4;
-
-                player_Rigidbody2D.velocity = new Vector2(calc_jump_speed_x, calc_jump_speed_y);
-                return;
             }
 
 
-        }
 
-        else return;
 
+
+
+            if (grounded == true)
+            {
+
+                if (is_sprinting == false)
+                {
+
+                    grounded = false;
+
+                    float x = player_Rigidbody2D.velocity.x;
+                    float x2 = Mathf.Abs(x);
+
+                    float x3 = x2 * jumpcoe;
+                    float x4 = x * jumpcoe;
+
+                    float calc_jump_speed_y = jump_speed + x3;
+                    float calc_jump_speed_x = x + x4;
+
+
+                    player_Rigidbody2D.velocity = new Vector2(calc_jump_speed_x, calc_jump_speed_y);
+                    return;
+                }
+
+                if (is_sprinting == true)
+                {
+                    grounded = false;
+
+                    float x = player_Rigidbody2D.velocity.x;
+                    float x2 = Mathf.Abs(x);
+
+                    float x3 = x2 * (jumpcoe * 1.25f);
+                    float x4 = x * (jumpcoe * 1.25f);
+
+                    float calc_jump_speed_y = jump_speed + x3;
+                    float calc_jump_speed_x = x + x4;
+
+                    player_Rigidbody2D.velocity = new Vector2(calc_jump_speed_x, calc_jump_speed_y);
+                    return;
+                }
+
+
+            }
+
+            else return;
+        
     }
 
 }
