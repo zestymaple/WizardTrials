@@ -4697,7 +4697,7 @@ PrefabInstance:
     - target: {fileID: 8718074220079331685, guid: 51ce93a7c584e2b43a3c0492792c9533,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 280.63348
+      value: 280.20242
       objectReference: {fileID: 0}
     - target: {fileID: 8718074220079331685, guid: 51ce93a7c584e2b43a3c0492792c9533,
         type: 3}
@@ -4747,7 +4747,7 @@ PrefabInstance:
     - target: {fileID: 8718074221761342128, guid: 51ce93a7c584e2b43a3c0492792c9533,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 280.63348
+      value: 280.20242
       objectReference: {fileID: 0}
     - target: {fileID: 8718074221761342128, guid: 51ce93a7c584e2b43a3c0492792c9533,
         type: 3}
@@ -35405,6 +35405,16 @@ PrefabInstance:
       propertyPath: sounds.Array.data[25].audiotype
       value: effect
       objectReference: {fileID: 0}
+    - target: {fileID: 2540409738234103724, guid: f9b2785de1ff9634ca70389bc440516b,
+        type: 3}
+      propertyPath: sounds.Array.data[2].pitch
+      value: 1.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2540409738234103724, guid: f9b2785de1ff9634ca70389bc440516b,
+        type: 3}
+      propertyPath: sounds.Array.data[2].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: fe0b1f9aeb45b41b089175aeeabd5d95, type: 3}
     - target: {fileID: 2540409738234103725, guid: f9b2785de1ff9634ca70389bc440516b,
         type: 3}
       propertyPath: m_LocalPosition.x
