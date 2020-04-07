@@ -214,7 +214,7 @@ public class Hero_Controller : MonoBehaviour
                     hero_current_mana--;
                 }
 
-                hero_current_mana--;
+                hero_current_mana-=2;
             }          
         }
     }

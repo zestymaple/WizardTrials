@@ -25,7 +25,7 @@ public class zombie_jump : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player").transform;
         //rb.velocity = transform.right * movespeed * 5 * -1;
         // InvokeRepeating("move", 0f, movetimer);
-        InvokeRepeating("jump", 5f, movetimer + 1);
+        InvokeRepeating("jump", 5f, movetimer);
         InvokeRepeating("generate_random", 0f, 4f);
     }
 
@@ -93,7 +93,7 @@ public class zombie_jump : MonoBehaviour
     {
        if (rand2 == 1)
         {
-            rb.velocity = new Vector2(movespeed * -1, rb.velocity.y);
+            rb.velocity = new Vector2(movespeed * 2 * -1, rb.velocity.y);
         }
 
     }

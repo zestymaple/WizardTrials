@@ -108,24 +108,24 @@ public class Hero_Controls : MonoBehaviour
             }
 
             //turn on sprint joystick
-            if (right_trigger == true)
+            if (left_trigger == true)
             {
                 anim.SetBool("is_walk", false);
                 anim.SetBool("is_sprint", true);
                 is_sprinting = true;
             }
-            if (right_trigger == false)
+            if (left_trigger == false)
             {
                 anim.SetBool("is_sprint", false);
                 is_sprinting = false;
             }
 
             //turn on special joystick
-            if (left_trigger == true)
+            if (right_trigger == true)
             {
                 special_active = true;
             }
-            if (left_trigger == false)
+            if (right_trigger == false)
             {
                 special_active = false;
             }

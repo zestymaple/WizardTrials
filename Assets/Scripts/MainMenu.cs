@@ -21,6 +21,11 @@ public class MainMenu : MonoBehaviour
         setDefaultFocus();
     }
 
+    private void OnDisable()
+    {
+
+    }
+
     private void setDefaultFocus()
     {
         Button btn = GameObject.Find("OptionsButton").GetComponent<Button>();
@@ -47,5 +52,10 @@ public class MainMenu : MonoBehaviour
     {
         Debug.Log("QUIT");
         Application.Quit();
+    }
+
+    void Start()
+    {
+
     }
 }

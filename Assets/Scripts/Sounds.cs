@@ -21,6 +21,8 @@ public class Sound
     public float volumeVariance;
     public float pitchVariance;
 
+    public string audiotype;
+
 
 
 

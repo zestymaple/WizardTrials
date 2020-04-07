@@ -12,9 +12,9 @@ GameObject:
   - component: {fileID: 5375912230769131639}
   - component: {fileID: 8492526260218175384}
   - component: {fileID: 8685562464626269803}
-  m_Layer: 10
+  m_Layer: 8
   m_Name: hitbox
-  m_TagString: boss_hitbox
+  m_TagString: Melee_Enemy_touch
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

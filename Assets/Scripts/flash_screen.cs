@@ -11,6 +11,7 @@ public class flash_screen : MonoBehaviour
     public float inc_val;
     public Color stevecolor;
     public int test_counter;
+    public bool cooldown;
     // Start is called before the first frame update
     void Start()
     {
@@ -28,18 +29,27 @@ public class flash_screen : MonoBehaviour
 
     public IEnumerator LerpUp()
     {
-        while (stevecolor.a < 0.25f)
+
+        if (cooldown == false)
         {
-            Debug.Log(stevecolor);
-            test_counter++;
-            stevecolor.a += inc_val;
-            yield return new WaitForEndOfFrame();
+            cooldown = true;
+            while (stevecolor.a < 0.25f)
+            {
+                Debug.Log(stevecolor);
+                test_counter++;
+                stevecolor.a += inc_val;
+                yield return new WaitForEndOfFrame();
+            }
+
         }
-        StartCoroutine(LerpDown());
+            StartCoroutine(LerpDown());
+
+
     }
 
     public IEnumerator LerpDown()
     {
+        cooldown = false;
         Debug.Log(stevecolor);
         while (stevecolor.a > 0f)
         {

@@ -55,6 +55,9 @@ public class SaveSystem : MonoBehaviour
     // If key exists use it ELSE set to DEFAULT value
     public void LoadSave()
     {
+        FindObjectOfType<AudioManager>().StopPlaying("Boss_theme");
+        FindObjectOfType<AudioManager>().play_main_theme();
+
         // Load Save
         Debug.Log("Loading Save");
 

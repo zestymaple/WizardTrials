@@ -25,6 +25,9 @@ public class AudioManager : MonoBehaviour
 
         DontDestroyOnLoad(gameObject);
 
+        int effect_mod = PlayerPrefs.GetInt("game.audio.effects");
+        int music_mod = PlayerPrefs.GetInt("game.audio.music");
+
         foreach (Sound s in sounds)
         {
             s.source = gameObject.AddComponent<AudioSource>();
@@ -42,6 +45,9 @@ public class AudioManager : MonoBehaviour
         {
             return;
         }
+ 
+
+
         s.source.Play();
     }
 
@@ -63,7 +69,36 @@ public class AudioManager : MonoBehaviour
 
     void Start()
     {
-        Play("Mountain_theme2");
-
+        change_volume();
+        //play_main_theme();
     }
+
+    public void play_main_theme()
+    {
+        Play("Mountain_theme2");
+    }
+
+
+    public void change_volume()
+    {
+        foreach (Sound s in sounds)
+        {
+
+            Debug.Log($"volume is equal to { s.source.volume } for {s.source.name } ");
+            if (s.audiotype == "effect")
+            {
+                float x = PlayerPrefs.GetInt("game.audio.effects");
+                Debug.Log(x + "steve");
+                s.source.volume = s.volume * (PlayerPrefs.GetFloat("game.audio.effects") / 100);
+
+            }
+            if (s.audiotype == "music")
+            {
+                s.source.volume = s.volume * (PlayerPrefs.GetFloat("game.audio.music") / 100);
+            }
+
+        }
+    }
+
+
 }

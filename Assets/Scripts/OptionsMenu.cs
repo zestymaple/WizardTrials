@@ -30,6 +30,12 @@ public class OptionsMenu : MonoBehaviour
         setDefaultFocus();
     }
 
+    private void OnDisable()
+    {
+        FindObjectOfType<AudioManager>().change_volume();
+        //FindObjectOfType<AudioManager>().set_settings();
+    }
+
     private void setDefaultFocus()
     {
         Button btn = GameObject.Find("BackButton").GetComponent<Button>();

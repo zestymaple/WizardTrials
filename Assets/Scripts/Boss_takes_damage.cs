@@ -90,6 +90,8 @@ public class Boss_takes_damage : MonoBehaviour
 
     public void enemy_dies(float death_timer1)
     {
+        FindObjectOfType<AudioManager>().StopPlaying("Boss_theme");
+        FindObjectOfType<AudioManager>().Play("post_boss_theme");
         FindObjectOfType<AudioManager>().Play("boss_dies");
         hitbox.enabled = !hitbox.enabled;
         enemydead = true;

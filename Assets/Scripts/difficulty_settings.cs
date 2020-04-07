@@ -6,9 +6,16 @@ public class difficulty_settings : MonoBehaviour
 {
     public int diff;
 
+
+    void Awake()
+    {
+
+    }
+
     // Start is called before the first frame update
     void Start()
     {
+
         diff = PlayerPrefs.GetInt("game.difficulty");
 
     }
